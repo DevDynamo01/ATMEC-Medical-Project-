@@ -3,16 +3,13 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { CiMicrophoneOn, CiMicrophoneOff } from "react-icons/ci";
+import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-const Dictaphone = () => {
-  const [recordingText, setRecordingText] = useState("");
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-
+const Dictaphone = ({content}) => {
+  // console.log("this is the content",content);
+  const [recordingText, setRecordingText] = useState('');
+  const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
 
   React.useEffect(() => {
     setRecordingText(transcript);
@@ -21,11 +18,25 @@ const Dictaphone = () => {
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
-const handleTheCall = (recordingText) => {
-  console.log("recordingText");
-  console.log(recordingText);
-  console.log("recordingText");
-};
+  // const handleTheCall = (recordingText) => {
+  //   console.log('recordingText', recordingText);
+  //   content(recordingText);
+  //   console.log(recordingText);
+  //   // console.log("recordingText");
+  // };
+  // const [toggle,setToggle]=useState(false)
+  useEffect(() => {
+    console.log("we get recording");
+    console.log(recordingText);
+    if(recordingText){
+      content(recordingText);
+    }
+  }, [recordingText]);
+
+const handleTheCall=()=> {
+
+}
+
 
 
   return (
@@ -36,33 +47,40 @@ const handleTheCall = (recordingText) => {
         {listening ? (
           <CiMicrophoneOff
             size={40}
-            onClick={()=>{
+            onClick={() => {
+              // handleTheCall(recordingText);
+              // console.log("hbfsnm")
               SpeechRecognition.stopListening();
-              handleTheCall(recordingText);
+
             }}
             style={{
-              cursor: "pointer",
-              border: "2px solid red", // Red border for when mic is on
-              borderRadius: "50%", // Circular border
-              padding: "10px",
+              cursor: 'pointer',
+              border: '2px solid red', // Red border for when mic is on
+              borderRadius: '50%', // Circular border
+              padding: '10px',
             }}
           />
         ) : (
           <CiMicrophoneOn
             size={40}
-            onClick={SpeechRecognition.startListening}
+            onClick={()=>{
+              // setRecordingText("");
+              resetTranscript();
+              SpeechRecognition.startListening();
+            }}
             style={{
-              cursor: "pointer",
-              border: "2px solid gray", // Gray border when mic is off
-              borderRadius: "50%", // Circular border
-              padding: "10px",
+              cursor: 'pointer',
+              border: '2px solid gray', // Gray border when mic is off
+              borderRadius: '50%', // Circular border
+              padding: '10px',
+              scale: '1.7',
             }}
           />
         )}
-        <button onClick={resetTranscript}>Reset</button>
+        {/* <button onClick={resetTranscript}>Reset</button> */}
       </span>
-      <p>{transcript}</p>
-      <p >Stored Transcript: {recordingText} </p> {/* Display stored string */}
+      {/* <p>{transcript}</p>
+      <p >Stored Transcript: {recordingText} </p> Display stored string */}
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import { GiSpeaker } from 'react-icons/gi';
 const TextToSpeech = ({ content }) => {
   const [femaleVoice, setFemaleVoice] = useState(null);
   const [voices, setVoices] = useState([]);
+  console.log("text to sppedh",content)
 
   useEffect(() => {
     const fetchVoices = () => {
@@ -22,7 +23,6 @@ const TextToSpeech = ({ content }) => {
   }, []);
 
   const speak = () => {
-    if (!femaleVoice) return;
 
     const utterance = new SpeechSynthesisUtterance(content);
     utterance.voice = femaleVoice;
@@ -30,9 +30,10 @@ const TextToSpeech = ({ content }) => {
   };
 
   return (
-    <div className="speak">
-      <button onClick={speak}>Speak</button>
-    </div>
+    <span className="speak">
+      {/* <button onClick={speak}>Speak</button> */}
+      <GiSpeaker onClick={speak} className="speaker"></GiSpeaker>
+    </span>
   );
 };
 
