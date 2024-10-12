@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react';
+import { ChatContextProvider } from './context/chatContext';
+import SideBar from './components/SideBar';
+import ChatView from './components/ChatView';
+import { useEffect, useState } from 'react';
+import Modal from './components/Modal';
+import Setting from './components/Setting';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ChatContextProvider>
+      <div className="flex transition duration-500 ease-in-out">
+        <SideBar />
+        <ChatView />
+      </div>
+    </ChatContextProvider>
     </div>
   );
 }
