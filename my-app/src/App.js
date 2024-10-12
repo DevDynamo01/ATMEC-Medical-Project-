@@ -1,23 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-
+// import VoiceWidget from "./VoiceWidget";
+import Dictaphone from './components/SpeechRecognition';
+import ResponsiveAppBar from './components/ResponsiveAppBar'
+import TextToSpeech from './components/TextToSpeech';
 function App() {
+  const text="hello this is surya the destroyer of the world";
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ResponsiveAppBar/>
+      <Dictaphone></Dictaphone>
+      <TextToSpeech content={text}></TextToSpeech>
     </div>
   );
 }

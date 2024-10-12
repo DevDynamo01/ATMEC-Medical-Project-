@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+
+.mic_container{
+  display: flex;
+  flex-direction: column;
+  border:1px solid rgb(145, 143, 143);
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.speak{
+font-size: 124px; /* Change this value to your desired size */
+  color: black;    /* Optional: Change text color if needed */
+  margin: 10px 0;
+}
