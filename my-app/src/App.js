@@ -11,6 +11,8 @@ import ChatView from './components/ChatView';
 import { useEffect, useState } from 'react';
 import Modal from './components/Modal';
 import Setting from './components/Setting';
+// import Home from './components/Home';
+// import HomePage from './HomePage';
 function App() {
   const text="hello this is surya the destroyer of the world";
   return (
@@ -24,6 +26,14 @@ function App() {
         <ChatView />
       </div>
     </ChatContextProvider>
+      {/* <ChatContextProvider>
+        <div className="flex transition duration-500 ease-in-out">
+          <SideBar />
+          <ChatView />
+        </div>
+      </ChatContextProvider> */}
+      {/* <Home /> */}
+      {/* <HomePage /> */}
     </div>
   );
 }
