@@ -25,16 +25,19 @@ const Dictaphone = ({content}) => {
   //   // console.log("recordingText");
   // };
   // const [toggle,setToggle]=useState(false)
+
   useEffect(() => {
-    console.log("we get recording");
-    console.log(recordingText);
-    if(recordingText){
-      content(recordingText);
-    }
-  }, [recordingText]);
+if(listening==false){
+  handleTheCall();
+}
+  }, [listening]);
 
 const handleTheCall=()=> {
-
+    console.log('we get recording');
+    console.log(recordingText);
+    if (recordingText) {
+      content(recordingText);
+    }
 }
 
 
