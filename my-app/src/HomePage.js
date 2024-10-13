@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRef, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
   const videoRef = useRef(null);
-
+  const navigate=useNavigate();
   useEffect(() => {
     const playVideo = async () => {
       try {
@@ -24,7 +24,7 @@ const HomePage = () => {
           helping patients and doctors make smarter, data-driven decisions for better health
           outcomes.
         </p>
-        <button className="chatButton">Start Chat</button>
+        <button className="chatButton" onClick={()=>{navigate("/chatbot")}}>Start Char</button>
         <video ref={videoRef} src="medical.mp4" muted loop />
       </div>
     </div>

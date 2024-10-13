@@ -11,7 +11,7 @@ import ChatView from './components/ChatView';
 import { useEffect, useState } from 'react';
 import Modal from './components/Modal';
 import Setting from './components/Setting';
-
+import { Route, Routes } from 'react-router-dom';
 // import Home from './components/Home';
 import HomePage from './HomePage';
 function App() {
@@ -19,23 +19,20 @@ function App() {
   return (
     <div className="App">
       <ResponsiveAppBar />
-      <HomePage />
+     <Routes>
+      <Route path="/" element={<HomePage/>}></Route>
+      <Route path="/chatbot" element={
+              <ChatContextProvider>
+              <div className="flex transition duration-500 ease-in-out">
+                <SideBar />
+                <ChatView />
+              </div>
+            </ChatContextProvider>
+            }
+      ></Route> 
+     </Routes>
       
-      {/* <Dictaphone></Dictaphone>
-      <TextToSpeech content={text}></TextToSpeech> */}
-      {/* <ChatContextProvider>
-        <div className="flex transition duration-500 ease-in-out">
-          <SideBar />
-          <ChatView />
-        </div>
-      </ChatContextProvider> */}
-      {/* <ChatContextProvider>
-        <div className="flex transition duration-500 ease-in-out">
-          <SideBar />
-          <ChatView />
-        </div>
-      </ChatContextProvider> */}
-      {/* <Home /> */}
+
     </div>
   );
 }

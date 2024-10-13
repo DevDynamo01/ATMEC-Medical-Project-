@@ -115,4 +115,5 @@
   font-weight: 700;
   box-shadow: 0 0 10px #333;
   cursor: pointer;
+  z-index: 5;
 }
