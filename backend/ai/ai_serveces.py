@@ -7,11 +7,8 @@ from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 
-# Load environment variables
 load_dotenv()
 
-# Set API key
-os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
 
 # Constants
 EMBEDDING_MODEL = "models/embedding-001"
@@ -31,7 +28,7 @@ def get_vector_store(text_chunks):
     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
     vector_store.save_local(FAISS_INDEX_NAME)
 
-def convert_pdfs_to_vectors(dir_path):
+def convert_pdfs_to_vectors(dir_path=PDF_DIRECTORY):
     if not os.path.isdir(dir_path):
         raise ValueError(f"The directory '{dir_path}' does not exist.")
     
@@ -87,5 +84,7 @@ if __name__ == "__main__":
         print(result['output_text'])
     except Exception as e:
         print(f"Error: {str(e)}")
+
+
 
 

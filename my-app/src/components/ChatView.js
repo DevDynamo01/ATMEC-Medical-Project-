@@ -70,7 +70,7 @@ const ChatView = () => {
   async function ChatWithBackend(data){
     try{
         console.log("current data",data)
-        const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/chat",{"message":data});
+        const response=await axios.post(API_URL+"/chat",{"message":data});
         console.log("this is reposen from api",response?.data);
         // setResponseMessage(response?.data);
         updateMessage(response?.data?.data, true);
@@ -79,16 +79,16 @@ const ChatView = () => {
 
     }
   }
-    const sendMessageForMic = async (text) => {
-      console.log("send msg funtion called for miccalled for ",text)
+  const sendMessageForMic = async (text) => {
+    console.log("send msg funtion called for miccalled for ",text)
     const cleanPrompt = text
     const newMsg = cleanPrompt;
     updateMessage(newMsg, false);
-    await ChatWithBackend(newMsg);
-    console.log("************************************")
-    const response = 'I am a bot. This feature will be coming soon.';
-    console.log(responseMessage);
-    updateMessage(responseMessage, true);
+    ChatWithBackend(newMsg);
+    // console.log("************************************")
+    // const response = 'I am a bot. This feature will be coming soon.';
+    // console.log(responseMessage);
+    // updateMessage(responseMessage, true);
   };
 
   const handleKeyDown = (e) => {
@@ -101,7 +101,7 @@ const ChatView = () => {
 
     const handleChangeforMic = (text) => {
       console.log("text",text)
-    setFormValue(text);
+      setFormValue(text);
   };
   const handleChange = (event) => {
     setFormValue(event.target.value);

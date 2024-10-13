@@ -2,7 +2,6 @@
 
 from pymongo import MongoClient
 from flask import jsonify, request
-from config import Config
 
 # # Initialize MongoDB client
 # client = MongoClient(Config.MONGODB_URI)

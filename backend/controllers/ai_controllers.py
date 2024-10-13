@@ -17,13 +17,14 @@ def chat_with_ai():
     message = request.json.get('message')
 
     result = chat_with_gemini(message, history=[])
+    print("chat :  ", result)
 
     return jsonify({"data":result}), 200
 
 
 def generate_follow_up_questions():
     initial_symptoms = request.json.get('symptoms')
-
+    print("initial_symptoms ", initial_symptoms)
     result = gen_ai_json(initial_symptoms, prompts=question_generation_prompt)
     result = json.loads(result)
     print("result " , result)
@@ -35,6 +36,7 @@ def predict_disease():
     data_string = json.dumps(data)
     result = gen_ai_json(data_string, prompts=predict_disease_prompt)
     result = json.loads(result)
+    print("predict_disease ", result)
     return jsonify(result), 200
 
 def questions_for_treatement():
@@ -49,6 +51,7 @@ def generate_treatement_plan():
     data_string = json.dumps(data)
     result = gen_ai_json(data_string, prompts=treatment_plan_generation_prompt)
     result = json.loads(result)
+    print("generate_treatement_plan ", result)
     return jsonify(result), 200
 
 

@@ -29,7 +29,7 @@ const FollowUpQuestions = () => {
     }
     try{
     console.log(data);
-    const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/predict",{data});
+    const response=await axios.post(API_URL+"/predict",{data});
     console.log("Respone from predicted 1", response?.data);
     setPredictDisease(response?.data);
     }
@@ -45,7 +45,7 @@ const FollowUpQuestions = () => {
     }
     try{
         console.log(data);
-        const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/questions-for-treatment",{data});
+        const response=await axios.post(API_URL+"/questions-for-treatment",{data});
         console.log("Respone from predicted 2", response?.data);
         setTreatmentQuestions(response?.data?.questions);
         }
@@ -64,7 +64,7 @@ const FollowUpQuestions = () => {
     }
     try{
     console.log(data);
-    const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/treatment-plan",{data});
+    const response=await axios.post(API_URL+"/treatment-plan",{data});
     console.log("Respone from predicted after treatment follow up questions", response?.data);
     setFinalTreatmentPlan(response?.data);
     }
@@ -78,7 +78,7 @@ const FollowUpQuestions = () => {
                 return;
         const data=inputValue;
         console.log("Foloe up api is called",data);
-        const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/follow-up-questions",{"symptoms":data});
+        const response=await axios.post(API_URL+"/follow-up-questions",{"symptoms":data});
         console.log(response?.data);
         setPossibleDisease(response?.data?.possible_disease)
         setFollowQuestions(response?.data?.questions)

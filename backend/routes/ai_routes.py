@@ -10,7 +10,7 @@ ai_routes.route('/chat', methods=['POST'])(chat_with_ai)       # { message : "St
 
 
 ## [ for diseas prediction and treatment plan generation ]
-ai_routes.route('/follow-up-questions', methods=['POST'])(generate_follow_up_questions) # { message : "Symptoms in string format"}
+ai_routes.route('/follow-up-questions', methods=['POST'])(generate_follow_up_questions) # { symptoms : "Symptoms in string format"}
 
 ai_routes.route('/predict', methods=['POST'])(predict_disease)
 

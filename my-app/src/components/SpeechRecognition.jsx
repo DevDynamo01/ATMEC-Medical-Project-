@@ -34,7 +34,7 @@ if(listening==false){
 
 const handleTheCall=()=> {
     console.log('we get recording');
-    console.log(recordingText);
+    console.log("recording text :", recordingText);
     if (recordingText) {
       content(recordingText);
     }

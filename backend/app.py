@@ -2,13 +2,12 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from routes.user_routes import user_routes
 from routes.ai_routes import ai_routes
-from config import Config
 
 app = Flask(__name__)
 
 CORS(app)
 
-app.config.from_object(Config)
+# app.config.from_object()
 
 # Register blueprints
 app.register_blueprint(user_routes)
