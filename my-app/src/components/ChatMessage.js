@@ -14,7 +14,7 @@ import TextToSpeech from './TextToSpeech';
  */
 const ChatMessage = (props) => {
   const { id, createdAt, text, ai = false } = props.message;
-console.log("this is=> ",text)
+// console.log("this is=> ",text)
   return (
 
     <div key={id} className={`${ai && 'bg-sky-100'} flex-row-reverse message px-10`}>

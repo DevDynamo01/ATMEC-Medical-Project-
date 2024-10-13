@@ -8,7 +8,7 @@ import Modal from './Modal';
 import Setting from './Setting';
 import PromptPerfect from './PromptPerfect';
 import Dictaphone from './SpeechRecognition';
-
+import axios from 'axios';
 
 /**
  * A chat view component that displays a list of messages and a form for sending new messages.
@@ -22,6 +22,7 @@ const ChatView = () => {
   const [messages, addMessage] = useContext(ChatContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPromptOpen, setModalPromptOpen] = useState(false);
+  const [responseMessage,setResponseMessage]=useState("");
   /**
    * Scrolls the chat area to the bottom.
    */
@@ -43,8 +44,7 @@ const ChatView = () => {
       text: newValue,
       ai: ai,
     };
-
-    addMessage(newMsg);
+        addMessage(newMsg);
   };
 
   /**
@@ -61,18 +61,34 @@ const ChatView = () => {
 
     setFormValue('');
     updateMessage(newMsg, false);
-    console.log("************************************")
+    ChatWithBackend(newMsg);
+    console.log("************************************ now the button is clicked")
     const response = 'I am a bot. This feature will be coming soon.';
-    updateMessage(response, true);
+    // console.log(responseMessage.data);
+    // updateMessage(responseMessage?.data, true);
   };
+  async function ChatWithBackend(data){
+    try{
+        console.log("current data",data)
+        const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/chat",{"message":data});
+        console.log("this is reposen from api",response?.data);
+        // setResponseMessage(response?.data);
+        updateMessage(response?.data?.data, true);
+    }
+    catch(err){
+
+    }
+  }
     const sendMessageForMic = async (text) => {
       console.log("send msg funtion called for miccalled for ",text)
     const cleanPrompt = text
     const newMsg = cleanPrompt;
     updateMessage(newMsg, false);
+    await ChatWithBackend(newMsg);
     console.log("************************************")
     const response = 'I am a bot. This feature will be coming soon.';
-    updateMessage(response, true);
+    console.log(responseMessage);
+    updateMessage(responseMessage, true);
   };
 
   const handleKeyDown = (e) => {

@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import Modal from './components/Modal';
 import Setting from './components/Setting';
 import { Route, Routes } from 'react-router-dom';
+import FollowUpQuestions from './components/FollowUpQuestions';
 // import Home from './components/Home';
 import HomePage from './HomePage';
 function App() {
@@ -30,6 +31,7 @@ function App() {
             </ChatContextProvider>
             }
       ></Route> 
+      <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
      </Routes>
       
 

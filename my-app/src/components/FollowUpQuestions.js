@@ -1,0 +1,166 @@
+import React, { useState } from "react";
+import "./FollowUpQuestions.css"; // Importing external CSS
+import axios from 'axios'
+import FeedbackQuestions from "./FeedbackQuestion";
+import DiagnosisReport from "./DiagonsisReport";
+import TreatmentPlan from "./TreatmentPlan";
+const FollowUpQuestions = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [possibleDisease,setPossibleDisease]=useState([]);
+  const [FollowQuestions,setFollowQuestions]=useState([]);
+  const [answers, setAnswers] = useState(Array(FollowQuestions.length).fill(""));
+  const [predictDisease,setPredictDisease]=useState();
+  const [treatmentQuestions,setTreatmentQuestions]=useState();
+  const [answersTreatment, setAnswersTreatment] = useState(Array(FollowQuestions.length).fill(""));
+  const [finalTreatmentPlan,setFinalTreatmentPlan]=useState();
+  const handleInputChange = (e, idx) => {
+    const newAnswers = [...answers];
+    newAnswers[idx] = e.target.value;
+    setAnswers(newAnswers); // Update answers state
+  };
+
+   const handleSubmitAnswers = async () => {
+    // Handle submission logic here
+    const data={
+        "symptoms":inputValue,
+        "possible_diseases":possibleDisease,
+        "questions":FollowQuestions,
+        "answers":answers
+    }
+    try{
+    console.log(data);
+    const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/predict",{data});
+    console.log("Respone from predicted 1", response?.data);
+    setPredictDisease(response?.data);
+    }
+    catch(err){
+        console.log(err);
+    }
+  };
+  const getQuestionForTreatMent= async ()=>{
+    const data={
+        "details":predictDisease?.details,
+        "disease":predictDisease?.disease,
+        "summary":predictDisease?.summary,
+    }
+    try{
+        console.log(data);
+        const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/questions-for-treatment",{data});
+        console.log("Respone from predicted 2", response?.data);
+        setTreatmentQuestions(response?.data?.questions);
+        }
+    catch(err){
+            console.log(err);
+    }
+  }
+  const handleSubmitAnswersTreatMent= async () => {
+    // Handle submission logic here
+    const data={
+        "details":predictDisease?.details,
+        "disease":predictDisease?.disease,
+        "summary":predictDisease?.summary,
+        "questions":treatmentQuestions,
+        "answers":answersTreatment
+    }
+    try{
+    console.log(data);
+    const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/treatment-plan",{data});
+    console.log("Respone from predicted after treatment follow up questions", response?.data);
+    setFinalTreatmentPlan(response?.data);
+    }
+    catch(err){
+        console.log(err);
+    }
+  };
+  async function callBackendFolowUpQuestions(){
+      try{
+        if(inputValue=="")
+                return;
+        const data=inputValue;
+        console.log("Foloe up api is called",data);
+        const response=await axios.post("https://0b0b-103-97-166-34.ngrok-free.app/follow-up-questions",{"symptoms":data});
+        console.log(response?.data);
+        setPossibleDisease(response?.data?.possible_disease)
+        setFollowQuestions(response?.data?.questions)
+      }
+      catch(err){
+        console.log("Error  in follow-up questions");
+      }
+  }
+  const handleSendClick = () => {
+    // Handle the button click (e.g., send the input value)
+    console.log("Send button clicked with input:", inputValue);
+    setInputValue(""); // Clear input field after sending
+  };
+
+  return (
+    <div className="followup-container">
+    <div className="w-full flex-row">
+      <input
+        type="text"
+        className="followup-inputBox"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Enter your follow-up question"
+      />
+      <button className="followup-sendButton" onClick={callBackendFolowUpQuestions}>
+        Send
+      </button>
+      </div>
+        <div>
+        {
+        possibleDisease && possibleDisease.length > 0 && 
+        (   <div className="flex gap-2">
+                <span>{"Possible Disease:"}</span>
+                {possibleDisease.map((ele, idx) => (
+                <span className="feedback-disease underline" key={idx}>{ele}</span>
+                ))
+                }
+            </div>
+        )
+        }
+        </div>
+        {   
+            FollowQuestions && FollowQuestions.length>0 && (
+            <div>
+                <FeedbackQuestions FollowQuestions={FollowQuestions}  answers={answers} setAnswers={setAnswers}/>
+                <button className="feedback-submitButton" onClick={handleSubmitAnswers}>
+                    Predict
+                </button>
+            </div>
+            )
+        }
+        {
+            predictDisease &&(
+            <div>
+                <DiagnosisReport data={predictDisease}/>
+                <button className="feedback-submitButton" onClick={getQuestionForTreatMent}>
+                    Generate Treatment
+                </button>
+            </div>
+            )
+        }
+        {    
+            treatmentQuestions && (
+            <div>
+                <FeedbackQuestions FollowQuestions={treatmentQuestions}  answers={answersTreatment} setAnswers={setAnswersTreatment}/>
+                <button className="feedback-submitButton" onClick={handleSubmitAnswersTreatMent}>
+                    Predict
+                </button>
+            </div>
+            )
+        }
+        {
+            finalTreatmentPlan &&(
+                <div>
+                    <TreatmentPlan data={finalTreatmentPlan}/>
+                </div>
+            )
+        }
+        <div>
+        </div>
+    </div>
+  );
+};
+
+export default FollowUpQuestions;

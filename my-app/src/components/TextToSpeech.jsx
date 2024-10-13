@@ -3,7 +3,7 @@ import { GiSpeaker } from 'react-icons/gi';
 const TextToSpeech = ({ content }) => {
   const [femaleVoice, setFemaleVoice] = useState(null);
   const [voices, setVoices] = useState([]);
-  console.log("text to sppedh",content)
+  // console.log("text to sppedh",content)
 
   useEffect(() => {
     const fetchVoices = () => {

@@ -99,21 +99,24 @@
   width: 30%;
   top: 30%;
   left: 5%;
-  color: white;
+  color:rgba(128, 128, 128, 0.744);
   display: inline-block;
 }
 
 .chatButton {
   position: absolute;
   top: 50%;
-  left: 43%;
+  left: 38%;
+
+  z-index: 5;
+}
+.navigateButtons{
   padding: 5px 20px;
-  background-color: white;
+  background-color: rgb(153, 23, 235);
   border-radius: 30px;
   font-size: 32px;
   color: greenyellow;
   font-weight: 700;
   box-shadow: 0 0 10px #333;
   cursor: pointer;
-  z-index: 5;
 }

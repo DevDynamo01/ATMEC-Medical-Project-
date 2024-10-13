@@ -18,13 +18,16 @@ const HomePage = () => {
   return (
     <div className="homePage">
       <div className="imageComponent">
-        <div className="heading">Chat Your Cure</div>
-        <p className="homePagePara">
+        <div className="heading text-black">Chat Your Cure</div>
+        <p className="homePagePara text-black">
           MedGen AI uses cutting-edge AI to provide personalized medical insights from genetic data,
           helping patients and doctors make smarter, data-driven decisions for better health
           outcomes.
         </p>
-        <button className="chatButton" onClick={()=>{navigate("/chatbot")}}>Start Char</button>
+        <div className='chatButton flex gap-5'>
+        <button className="navigateButtons" onClick={()=>{navigate("/chatbot")}}>Start Chat</button>
+        <button className="navigateButtons" onClick={()=>{navigate("/diagonsis")}}>Disease Diagonsis</button>
+        </div>
         <video ref={videoRef} src="medical.mp4" muted loop />
       </div>
     </div>
