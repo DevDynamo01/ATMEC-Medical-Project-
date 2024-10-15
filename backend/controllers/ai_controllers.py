@@ -1,7 +1,7 @@
 from flask import jsonify, request
 from ai.ai_serveces import user_input
 from ai.gemini import chat_with_gemini, gen_ai_json
-from ai.prompts import question_generation_prompt, predict_disease_prompt, treatment_questions_prompt, treatment_plan_generation_prompt
+from ai.prompts import question_generation_prompt, predict_disease_prompt, treatment_questions_prompt, treatment_plan_generation_prompt, dataset_generation_prompt
 import json
 
 def predict():
@@ -54,6 +54,27 @@ def generate_treatement_plan():
     print("generate_treatement_plan ", result)
     return jsonify(result), 200
 
+def generate_dataset_from_sample():
+    data = request.json
+    data_string = json.dumps(data)
+    result = gen_ai_json(data_string, prompts=dataset_generation_prompt)
+    result = json.loads(result)
+    print("generated dataset ", result)
+    return jsonify(result), 200
 
+def generate_dataset_from_description():
+    data = request.json
+    data_string = json.dumps(data)
+    result = gen_ai_json(data_string, prompts=dataset_generation_prompt)
+    result = json.loads(result)
+    print("generated dataset ", result)
+    return jsonify(result), 200
 
-    
+def chat_with_image():
+    message = request.json.get('message')
+    image = request.json.get('image')
+
+    result = gen_ai_image(message, image, prompts=[])
+    print("chat :  ", result)
+
+    return jsonify({"data":result}), 200
