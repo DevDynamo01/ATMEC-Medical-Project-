@@ -34,8 +34,10 @@ const HomePage = () => {
             text={'Generate DataSet By Description'}
             path={'/generateDataFromSample'}
           ></HomeButton>
+          <HomeButton text={'Analyze Image'} path={'/uploadImage'}></HomeButton>
           <HomeButton text={'Generate DataSet from Sample'} path={''}></HomeButton>
           <HomeButton text={'Analyze Medical Documents'}></HomeButton>
+          <HomeButton text={'Analyze Image'} path={'/uploadImage'}></HomeButton>
         </div>
         <video ref={videoRef} src="medical.mp4" muted loop />
       </div>
