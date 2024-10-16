@@ -1,19 +1,70 @@
-Clone the repo or download the source code  
+# MedGenAI
 
-For python backend:  
+## Overview
 
- 1.  go to backend folder  
- 2. install the dependencies  
-      `pip install -r requirements.txt`  
- 3. creaet a `.env` file and get required API's as given in ".env.example" file  
- 4. run the app.py file in the backend.   
-       or use `python app.py`   
-  
+**MedGenAI** is an innovative project designed to revolutionize the healthcare industry by leveraging cutting-edge artificial intelligence. By integrating multimodal AI technologies, this solution aims to enhance diagnostic accuracy, accelerate medical research with synthetic data, and provide personalized treatment plans. Through the use of large language models (LLMs) like GPT-4, AI-driven image analysis, and generative models, MedGenAI offers a holistic approach to improving healthcare outcomes, reducing costs, and optimizing the patient experience.
 
-For the react frontend  
+### Key Features:
+- **Multimodal AI for Diagnosis:** AI-powered text and image analysis for precise diagnosis.
+- **Synthetic Medical Data Generation:** Create synthetic data for research and training, ensuring privacy through federated learning.
+- **Personalized Treatment Plans:** AI-refined treatment recommendations based on real-time patient data.
+- **Federated Learning for Privacy:** Ensures that patient data remains secure and private during model training.
+- **AI-Driven Chatbots:** Collect patient data, answer queries, and build medical profiles for improved care.
+- **Accelerated Drug Discovery:** Use generative models to discover and validate novel molecular structures for pharmaceuticals.
 
- 1. Go to my-app folder  
- 2. install dependencies  
-    `npm install`  
- 3. run the app  
-    `npm start`
+---
+
+## Table of Contents
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+- [Applications](#applications)
+- [License](#license)
+
+---
+
+## Tech Stack
+
+**Backend:**
+- Python
+- Flask (API development)
+- PyTorch, Hugging Face Transformers (AI Models)
+- TensorFlow Federated, PySyft (Federated Learning)
+- PyCryptodome (Encryption)
+- RDKit, AutoDock Vina, DeepChem (Drug Discovery)
+- DICOM standards
+- Cloud Platforms: AWS, Google Health Cloud
+
+**Frontend:**
+- React.js
+- Custom APIs
+- Healthcare APIs
+
+**Other Tools:**
+- GANs (Generative Adversarial Networks)
+- Differential Privacy Techniques
+- QSAR models (Quantitative Structure-Activity Relationship)
+
+---
+
+## Project Structure
+
+```bash
+/MedGenAI
+│
+├── /backend
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── .env.example
+│   └── /models
+│       └── *Trained AI models*
+│
+├── /frontend
+│   ├── /my-app
+│   ├── public
+│   └── src
+│       └── *React components*
+│
+└── README.md
