@@ -99,7 +99,7 @@
   width: 30%;
   top: 30%;
   left: 5%;
-  color:rgba(128, 128, 128, 0.744);
+  color: rgba(128, 128, 128, 0.744);
   display: inline-block;
 }
 
@@ -109,7 +109,7 @@
   right: 20%;
   z-index: 5;
 }
-.navigateButtons{
+.navigateButtons {
   padding: 5px 20px;
   background-color: rgb(153, 23, 235);
   border-radius: 30px;
@@ -120,83 +120,156 @@
   cursor: pointer;
 }
 
+.datasetGen {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.upload-csv-container{
-  width:100vw;
-  min-height:100vh;
+.datasetfromdesc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 450px;
+  background-color: #333;
+  padding: 12px 12px;
+  margin-top: 20px;
+  border-radius: 12px;
+}
+
+.datasetfromdeschead {
+  color: white;
+  font-size: 32px;
+}
+
+.datasetgenform {
+  display: flex;
+  flex-direction: column;
+}
+
+.datasetgeninput {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.datasetgeninput input {
+  padding: 6px 6px;
+  width: 380px;
+  border-radius: 6px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addmorebutton {
+  background-color: rgba(12, 89, 245, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.submitbutton {
+  background-color: rgba(16, 245, 12, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.sizeInputBox {
+  padding: 6px 6px;
+  width: 380px;
+  border-radius: 6px;
+  border-bottom: 1px solid white;
+}
+
+.upload-csv-container {
+  width: 100vw;
+  min-height: 100vh;
   background-color: #282c34;
   color: aliceblue;
-box-sizing: border-box;
-overflow: hidden;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.file-upload-container{
-  padding:10px;
-  margin:10px;
-  width:100%;
-background-color: #333;
-display: flex;
-/* justify-content: center;   */
-align-items: center;
-overflow-y:scroll ;
+.file-upload-container {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  /* justify-content: center;   */
+  align-items: center;
+  overflow-y: scroll;
 }
-.file-upload-container button{
-  border:2px solid black;
-  padding:10px;
-  margin:10px;
-  width:130px;
+.file-upload-container button {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 130px;
 }
-.file-upload-container button:hover{
-background-color: azure;
-color: black;
+.file-upload-container button:hover {
+  background-color: azure;
+  color: black;
 }
 
-.size-input-of-dataset{
-  padding:10px;
-  width:300px;
+.size-input-of-dataset {
+  padding: 10px;
+  width: 300px;
 }
 .size-input-of-dataset:focus {
   outline: none;
   border: 1px solid #ccc; /* Optional: set a custom border */
 }
 
-.table_container{
-  padding:10px;
-  margin:10px;
-  width:100%;
+.table_container {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
   /* min-height:10px;
   max-height:50vh; */
-background-color: #333;
-display: flex;
-justify-content: center;  
-overflow-y:scroll ;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
 }
-table{
-  border:2px solid rgb(4, 4, 4);
+table {
+  border: 2px solid rgb(4, 4, 4);
 }
-thead{
-  border:2px solid grey;
+thead {
+  border: 2px solid grey;
   background-color: #282c34;
-  color:white;
+  color: white;
   /* display: flex;
   justify-content: center;
   align-items: center; */
 }
-th{
-  border:2px solid grey;
-  padding:2px;
-  margin:2px;
+th {
+  border: 2px solid grey;
+  padding: 2px;
+  margin: 2px;
 }
-td{
+td {
   border-left: 2px solid grey;
-  border-right:2px solid  grey;
-  padding:2px;
-  margin:2px;
+  border-right: 2px solid grey;
+  padding: 2px;
+  margin: 2px;
 }
 
-.download-button{
+.download-button {
   background-color: rgb(32, 32, 173);
 }
 
-.download-button:hover{
+.download-button:hover {
   background-color: rgb(7, 7, 253);
 }

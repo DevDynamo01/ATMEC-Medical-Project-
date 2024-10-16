@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import HomeButton from './components/HomeButtons';
 const HomePage = () => {
   const videoRef = useRef(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     const playVideo = async () => {
       try {
@@ -25,14 +25,18 @@ const HomePage = () => {
           helping patients and doctors make smarter, data-driven decisions for better health
           outcomes.
         </p>
-        <div className='chatButton flex flex-col gap-10'>
-        {/* <button className="navigateButtons" onClick={()=>{navigate("/chatbot")}}>Start Chat</button>
+        <div className="chatButton flex flex-col gap-10">
+          {/* <button className="navigateButtons" onClick={()=>{navigate("/chatbot")}}>Start Chat</button>
         <button className="navigateButtons" onClick={()=>{navigate("/diagonsis")}}>Disease Diagonsis</button> */}
-        <HomeButton text={"Start Chat"} path={"/chatbot"}></HomeButton>
-        <HomeButton text={"Disease Diagonsis"} path={"/diagonsis"}></HomeButton>
         <HomeButton text={"Generate DataSet"} path={""}></HomeButton>
-        <HomeButton text={"Generate DataSet from Sample"} path={"/generateDataFromSample"}></HomeButton>
         <HomeButton text={"Analyze Medical Documents"}></HomeButton>
+          <HomeButton text={'Start Chat'} path={'/chatbot'}></HomeButton>
+          <HomeButton text={'Disease Diagonsis'} path={'/diagonsis'}></HomeButton>
+          <HomeButton
+            text={'Generate DataSet By Description'}
+            path={'/generateData'}
+          ></HomeButton>
+          <HomeButton text={'Generate DataSet from Sample'} path={'/generateDataFromSample'}></HomeButton>
         </div>
         <video ref={videoRef} src="medical.mp4" muted loop />
       </div>

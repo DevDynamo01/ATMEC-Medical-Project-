@@ -15,17 +15,21 @@ import { Route, Routes } from 'react-router-dom';
 import FollowUpQuestions from './components/FollowUpQuestions';
 // import Home from './components/Home';
 import HomePage from './HomePage';
+import DynamicForm from './DynamicForm';
 import UploadFile from './components/UploadFile';
 function App() {
   const text = 'hello this is surya the destroyer of the world';
   return (
     <div className="App">
       <ResponsiveAppBar />
-      
-     <Routes>
-      <Route path="/" element={<HomePage/>}></Route>
-      <Route path="/chatbot" element={
-              <ChatContextProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/chatbot" element={<ChatContextProvider />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route
+          path="/chatbot"
+          element={
+            <ChatContextProvider>
               <div className="flex transition duration-500 ease-in-out">
                 <SideBar />
                 <ChatView />
@@ -35,9 +39,8 @@ function App() {
       ></Route> 
       <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
       <Route path="/generateDataFromSample" element={<UploadFile/>}></Route>
+       <Route path="/generateData" element={<DynamicForm />}></Route>
      </Routes>
-      
-
     </div>
   );
 }
