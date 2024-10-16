@@ -147,5 +147,17 @@ Make sure you have the following installed on your system:
 
 
 
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+
+---
+
+Feel free to customize this template to fit the specifics of your project!
 
 
