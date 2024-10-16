@@ -17,6 +17,7 @@ import FollowUpQuestions from './components/FollowUpQuestions';
 import HomePage from './HomePage';
 import DynamicForm from './DynamicForm';
 import UploadFile from './components/UploadFile';
+import ReportUploader from './components/ReportUploader';
 function App() {
   const text = 'hello this is surya the destroyer of the world';
   return (
@@ -38,6 +39,7 @@ function App() {
             }
       ></Route> 
       <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
+      <Route path="/handle-uploader" element={<ReportUploader></ReportUploader>}></Route>
       <Route path="/generateDataFromSample" element={<UploadFile/>}></Route>
        <Route path="/generateData" element={<DynamicForm />}></Route>
      </Routes>
