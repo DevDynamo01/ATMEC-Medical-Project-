@@ -7,6 +7,7 @@ import moment from 'moment';
 import person from '../assets/person.png';
 import logo from '../assets/logo.png';
 import TextToSpeech from './TextToSpeech';
+import TypeWriter from './TypeWriter';
 /**
  * A chat message component that displays a message with a timestamp and an icon.
  *
@@ -19,7 +20,7 @@ const ChatMessage = (props) => {
 
     <div key={id} className={`${ai && 'bg-sky-100'} flex-row-reverse message px-10`}>
       <div className="message__wrapper">
-        <ReactMarkdown
+        {/* <ReactMarkdown
           className={'message__markdown text-left'}
           remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
           components={{
@@ -38,13 +39,12 @@ const ChatMessage = (props) => {
           }}
         >
           {text}
-        </ReactMarkdown>
-
+        </ReactMarkdown> */}
+        {!ai ? (<TypeWriter text={text} speed={20}></TypeWriter>): text}
         <div className="text-left message__createdAt">{moment(createdAt).calendar()}
         <TextToSpeech content={text}></TextToSpeech>
         </div>
       </div>
-
       <div className="message__pic">
         <div className="avatar">
           <div className="w-8 border rounded-full">

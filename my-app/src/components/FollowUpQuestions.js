@@ -4,14 +4,16 @@ import axios from 'axios'
 import FeedbackQuestions from "./FeedbackQuestion";
 import DiagnosisReport from "./DiagonsisReport";
 import TreatmentPlan from "./TreatmentPlan";
+import Loader from "./Loader";
 const FollowUpQuestions = () => {
   const [inputValue, setInputValue] = useState("");
   const [possibleDisease,setPossibleDisease]=useState([]);
-  const [FollowQuestions,setFollowQuestions]=useState([]);
+  const [FollowQuestions,setFollowQuestions]=useState(["what is you problem 1 jjjjjjjjjjjjjjjjjjjj","what is your porblem 2 kkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkk","what is your problem 3","what is your problem 4"]);
   const [answers, setAnswers] = useState(Array(FollowQuestions.length).fill(""));
   const [predictDisease,setPredictDisease]=useState();
   const [treatmentQuestions,setTreatmentQuestions]=useState();
   const [answersTreatment, setAnswersTreatment] = useState(Array(FollowQuestions.length).fill(""));
+  const [loading,setLoading]=useState(false);
   const [finalTreatmentPlan,setFinalTreatmentPlan]=useState();
   const handleInputChange = (e, idx) => {
     const newAnswers = [...answers];
@@ -27,6 +29,7 @@ const FollowUpQuestions = () => {
         "questions":FollowQuestions,
         "answers":answers
     }
+    setLoading(true);
     try{
     console.log(data);
     const response=await axios.post(API_URL+"/predict",{data});
@@ -36,6 +39,7 @@ const FollowUpQuestions = () => {
     catch(err){
         console.log(err);
     }
+    setLoading(false);
   };
   const getQuestionForTreatMent= async ()=>{
     const data={
@@ -43,6 +47,7 @@ const FollowUpQuestions = () => {
         "disease":predictDisease?.disease,
         "summary":predictDisease?.summary,
     }
+    setLoading(true);
     try{
         console.log(data);
         const response=await axios.post(API_URL+"/questions-for-treatment",{data});
@@ -52,6 +57,7 @@ const FollowUpQuestions = () => {
     catch(err){
             console.log(err);
     }
+    setLoading(false);
   }
   const handleSubmitAnswersTreatMent= async () => {
     // Handle submission logic here
@@ -62,6 +68,7 @@ const FollowUpQuestions = () => {
         "questions":treatmentQuestions,
         "answers":answersTreatment
     }
+    setLoading(true);
     try{
     console.log(data);
     const response=await axios.post(API_URL+"/treatment-plan",{data});
@@ -71,8 +78,10 @@ const FollowUpQuestions = () => {
     catch(err){
         console.log(err);
     }
+    setLoading(false);
   };
   async function callBackendFolowUpQuestions(){
+    setLoading(true);
       try{
         if(inputValue=="")
                 return;
@@ -86,6 +95,7 @@ const FollowUpQuestions = () => {
       catch(err){
         console.log("Error  in follow-up questions");
       }
+      setLoading(false);
   }
   const handleSendClick = () => {
     // Handle the button click (e.g., send the input value)
@@ -159,6 +169,10 @@ const FollowUpQuestions = () => {
         }
         <div>
         </div>
+        {
+          loading &&
+          (<Loader/>)
+        }
     </div>
   );
 };

@@ -24,6 +24,8 @@ function App() {
       <ResponsiveAppBar />
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
+        <Route path="/chatbot" element={<ChatContextProvider />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/chatbot"
           element={
@@ -36,6 +38,9 @@ function App() {
           }
         ></Route>
         <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
+        <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
+        <Route path="/generateData" element={<UploadFile />}></Route>
+        <Route path="/generateDataFromSample" element={<DynamicForm />}></Route>
       </Routes>
     </div>
   );

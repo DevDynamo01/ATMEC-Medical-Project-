@@ -6,6 +6,7 @@ const DynamicForm = () => {
   const [loading, setLoading] = useState(false); // Loader state
   const [dataset, setDataset] = useState(null); // State to store the dataset
   const [downloadUrl, setDownloadUrl] = useState([]);
+  const [showDownBut, setDownloadButton] = useState(false);
   // Add more fields
   const handleAddMore = () => {
     setFields([...fields, { field: '', description: '' }]);
@@ -22,7 +23,7 @@ const DynamicForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Show loader when API call starts
-
+    setDownloadButton(true);
     const data = {
       size: size,
       fields: fields.map((item) => item.field),
@@ -44,7 +45,7 @@ const DynamicForm = () => {
       // Assuming the dataset is in result.dataset
       if (result?.dataset) {
         setDataset(result.dataset);
-
+        setDownloadButton(true);
         // =====================
         const csv = Papa.unparse(result.dataset); // Convert JSON to CSV using PapaParse
         // Step 2: Create a Blob from the CSV data
@@ -146,11 +147,11 @@ const DynamicForm = () => {
         {loading && <p>Loading...</p>}
 
         {/* Download CSV button */}
-        {downloadUrl && (
+        {downloadUrl && showDownBut && (
           <button
             onClick={downloadFile}
             style={{ display: 'block', margin: '10px auto' }}
-            className="download-button"
+            className="download-button-csv"
           >
             Download Processed CSV
           </button>

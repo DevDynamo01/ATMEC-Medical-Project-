@@ -105,9 +105,8 @@
 
 .chatButton {
   position: absolute;
-  top: 50%;
-  left: 38%;
-
+  top: 10%;
+  right: 20%;
   z-index: 5;
 }
 .navigateButtons {
@@ -193,4 +192,84 @@
   width: 380px;
   border-radius: 6px;
   border-bottom: 1px solid white;
+}
+
+.upload-csv-container {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #282c34;
+  color: aliceblue;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.file-upload-container {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  /* justify-content: center;   */
+  align-items: center;
+  overflow-y: scroll;
+}
+.file-upload-container button {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 130px;
+}
+.file-upload-container button:hover {
+  background-color: azure;
+  color: black;
+}
+
+.size-input-of-dataset {
+  padding: 10px;
+  width: 300px;
+}
+.size-input-of-dataset:focus {
+  outline: none;
+  border: 1px solid #ccc; /* Optional: set a custom border */
+}
+
+.table_container {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  /* min-height:10px;
+  max-height:50vh; */
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+table {
+  border: 2px solid rgb(4, 4, 4);
+}
+thead {
+  border: 2px solid grey;
+  background-color: #282c34;
+  color: white;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+th {
+  border: 2px solid grey;
+  padding: 2px;
+  margin: 2px;
+}
+td {
+  border-left: 2px solid grey;
+  border-right: 2px solid grey;
+  padding: 2px;
+  margin: 2px;
+}
+
+.download-button {
+  background-color: rgb(32, 32, 173);
+}
+
+.download-button:hover {
+  background-color: rgb(7, 7, 253);
 }
