@@ -83,6 +83,22 @@ Make sure you have the following installed on your system:
 - pip (Python package installer)
 - npm (Node package manager)
 
+
+## How to run project
+
+##For python backend:
+
+-cd backend
+-pip install -r requirements.txt
+-creaet a .env file and add GOOGLE_API_KEY="..." # Gemini Api key from https://aistudio.google.com
+-python app.py
+
+##For the react frontend
+-cd my-app
+-npm install
+-npm start
+
 ---
+
 
 
