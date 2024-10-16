@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FollowUpQuestions.css"; // Import CSS
-
+import { IoMdSend } from "react-icons/io";
+import TypeWriter from "./TypeWriter";
 const FeedbackQuestions = ({ FollowQuestions,answers,setAnswers}) => {
   // const [answers, setAnswers] = useState(Array(FollowQuestions.length).fill("")); // Initial state for answers
+  const [displayQuestions,setDisplayQuestions]=useState([0]);
 
   const handleInputChange = (e, idx) => {
     const newAnswers = [...answers];
@@ -10,34 +12,35 @@ const FeedbackQuestions = ({ FollowQuestions,answers,setAnswers}) => {
     setAnswers(newAnswers); // Update answers state
   };
 
-  // const handleSubmit = () => {
-  //   // Handle submission logic here
-  //   console.log("Submitted Answers:", answers);
-  //   setAnswers2(answers)
-  // };
-
   return (
     <div className="feedback-container">
-      {/* <div className="feedback-disease">
-        Possible Disease: d1, d2, d3 
-      </div> */}
-
-      {FollowQuestions.map((question, idx) => (
-        <div className="feedback-questionContainer" key={idx}>
-          <label className="feedback-questionLabel">{`Question ${idx + 1}: ${question}`}</label>
-          <input
-            type="text"
-            className="feedback-inputBox"
-            value={answers[idx]}
-            onChange={(e) => handleInputChange(e, idx)}
-            placeholder="Answer ..."
-          />
-        </div>
-      ))}
-
-      {/* <button className="feedback-submitButton" onClick={handleSubmit}>
-        Predict
-      </button> */}
+      <div className="feedback-disease">
+        Please Respond to Follow-up-questions...
+      </div>
+         {
+            FollowQuestions &&(
+              FollowQuestions.map((questions,idx)=>(
+                displayQuestions.includes(idx) && (
+                <div className={`"feedback-questionContainer hidden" ${displayQuestions.includes(idx)?"actice":"not_active"}`} key={idx}>
+                    <label className="feedback-questionLabel"><TypeWriter text={questions}/></label>
+                    <div className="w-full flex items-center gap-4">
+                    <input
+                      type="text"
+                      className="feedback-inputBox"
+                      value={answers[idx]}
+                      onChange={(e) => handleInputChange(e, idx)}
+                      placeholder="Answer ..."
+                    />
+                    { idx<FollowQuestions.length-1 &&(
+                        <IoMdSend onClick={()=>{setDisplayQuestions([...displayQuestions,idx+1])}} className="h-5 w-5 hover:scale-150 cursor-pointer"/>
+                    )
+                    }
+                    </div>
+                  </div>
+                )
+              ))
+            )
+         }
     </div>
   );
 };

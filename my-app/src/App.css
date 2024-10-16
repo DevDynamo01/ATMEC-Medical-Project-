@@ -105,9 +105,8 @@
 
 .chatButton {
   position: absolute;
-  top: 50%;
-  left: 38%;
-
+  top: 10%;
+  right: 20%;
   z-index: 5;
 }
 .navigateButtons{

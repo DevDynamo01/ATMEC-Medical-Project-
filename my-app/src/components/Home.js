@@ -1,7 +1,6 @@
 import React from 'react';
 import TextTransition, { presets } from 'react-text-transition';
 const TEXTS = ['CHAT', 'YOUR', 'CURE'];
-
 const Home = () => {
   const [index, setIndex] = React.useState(0);
 
