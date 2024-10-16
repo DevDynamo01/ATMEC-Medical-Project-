@@ -99,7 +99,7 @@
   width: 30%;
   top: 30%;
   left: 5%;
-  color:rgba(128, 128, 128, 0.744);
+  color: rgba(128, 128, 128, 0.744);
   display: inline-block;
 }
 
@@ -110,7 +110,7 @@
 
   z-index: 5;
 }
-.navigateButtons{
+.navigateButtons {
   padding: 5px 20px;
   background-color: rgb(153, 23, 235);
   border-radius: 30px;
@@ -119,4 +119,78 @@
   font-weight: 700;
   box-shadow: 0 0 10px #333;
   cursor: pointer;
+}
+
+.datasetGen {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.datasetfromdesc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 450px;
+  background-color: #333;
+  padding: 12px 12px;
+  margin-top: 20px;
+  border-radius: 12px;
+}
+
+.datasetfromdeschead {
+  color: white;
+  font-size: 32px;
+}
+
+.datasetgenform {
+  display: flex;
+  flex-direction: column;
+}
+
+.datasetgeninput {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.datasetgeninput input {
+  padding: 6px 6px;
+  width: 380px;
+  border-radius: 6px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addmorebutton {
+  background-color: rgba(12, 89, 245, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.submitbutton {
+  background-color: rgba(16, 245, 12, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.sizeInputBox {
+  padding: 6px 6px;
+  width: 380px;
+  border-radius: 6px;
+  border-bottom: 1px solid white;
 }
