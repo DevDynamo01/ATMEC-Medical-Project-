@@ -129,9 +129,12 @@ Make sure you have the following installed on your system:
 
 <table>
   <tr>
-<td align="center"><a href="https://github.com/Suryanra">
 
-  <img src="https://avatars.githubusercontent.com/u/142992104?v=4" width="100px;" alt=""/><br /><sub><b>Surya Pratap Singh</b></sub></a></td>
+
+
+  
+<td align="center"><a href="https://github.com/Suryanra"><img src="https://avatars.githubusercontent.com/u/142992104?v=4" width="100px;" alt=""/><br /><sub><b>Surya Pratap Singh</b></sub></a></td>
+
 
 <td align="center"><a href="https://github.com/sahilsingh84"><img src="https://avatars.githubusercontent.com/u/145158616?s=400&u=542461d5913311227d54054ba658620b6f4db56d&v=4" width="100px;" alt=""/><br /><sub><b>Sahil Singh</b></sub></a></td>
  
