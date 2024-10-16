@@ -129,7 +129,7 @@ Make sure you have the following installed on your system:
 
 <table>
   <tr>
-<td align="center"><a href="[https://github.com/Susmita-Dey](https://github.com/Suryanra)">
+<td align="center"><a href="https://github.com/Suryanra">
 
   <img src="https://avatars.githubusercontent.com/u/142992104?v=4" width="100px;" alt=""/><br /><sub><b>Surya Pratap Singh</b></sub></a></td>
 
