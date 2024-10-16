@@ -53,6 +53,8 @@ def generate_treatement_plan():
 
 def generate_dataset_from_sample():
     data = request.json
+    print("printing data")
+    print(data)
     data_string = json.dumps(data)
     result = gen_ai_json(data_string, prompts=dataset_generation_prompt)
     result = json.loads(result)

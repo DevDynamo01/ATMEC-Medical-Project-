@@ -15,11 +15,13 @@ import { Route, Routes } from 'react-router-dom';
 import FollowUpQuestions from './components/FollowUpQuestions';
 // import Home from './components/Home';
 import HomePage from './HomePage';
+import UploadFile from './components/UploadFile';
 function App() {
   const text = 'hello this is surya the destroyer of the world';
   return (
     <div className="App">
       <ResponsiveAppBar />
+      
      <Routes>
       <Route path="/" element={<HomePage/>}></Route>
       <Route path="/chatbot" element={
@@ -32,6 +34,7 @@ function App() {
             }
       ></Route> 
       <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
+      <Route path="/generateData" element={<UploadFile/>}></Route>
      </Routes>
       
 
