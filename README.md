@@ -71,4 +71,18 @@
 
 
 ```
-wewew
+# MedGenAI
+
+MedGenAI is a medical-based AI platform designed to assist with various healthcare-related tasks. This guide will help you set up the project locally, both for the backend and the frontend.
+
+## Prerequisites
+
+Make sure you have the following installed on your system:
+- Python 3.x
+- Node.js
+- pip (Python package installer)
+- npm (Node package manager)
+
+---
+
+
