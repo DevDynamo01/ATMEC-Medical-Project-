@@ -201,9 +201,6 @@ const ChatView = () => {
         </div>
 
       </form>
-      <Modal title="Setting" modalOpen={modalOpen} setModalOpen={setModalOpen}>
-        <Setting modalOpen={modalOpen} setModalOpen={setModalOpen} />
-      </Modal>
       <Modal title="Prompt Perfect" modalOpen={modalPromptOpen} setModalOpen={setModalPromptOpen}>
         <PromptPerfect
           prompt={prompt}
