@@ -34,7 +34,7 @@ function App() {
             }
       ></Route> 
       <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
-      <Route path="/generateData" element={<UploadFile/>}></Route>
+      <Route path="/generateDataFromSample" element={<UploadFile/>}></Route>
      </Routes>
       
 

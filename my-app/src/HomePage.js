@@ -31,7 +31,7 @@ const HomePage = () => {
         <HomeButton text={"Start Chat"} path={"/chatbot"}></HomeButton>
         <HomeButton text={"Disease Diagonsis"} path={"/diagonsis"}></HomeButton>
         <HomeButton text={"Generate DataSet"} path={""}></HomeButton>
-        <HomeButton text={"Generate DataSet from Sample"} path={""}></HomeButton>
+        <HomeButton text={"Generate DataSet from Sample"} path={"/generateDataFromSample"}></HomeButton>
         <HomeButton text={"Analyze Medical Documents"}></HomeButton>
         </div>
         <video ref={videoRef} src="medical.mp4" muted loop />

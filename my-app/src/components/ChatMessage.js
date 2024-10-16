@@ -18,9 +18,9 @@ const ChatMessage = (props) => {
 // console.log("this is=> ",text)
   return (
 
-    <div key={id} className={`${ai && 'bg-sky-100'} flex-row-reverse message px-10`}>
+    <div key={id} className={`${ai && 'bg-sky-100' } flex-row-reverse message px-10`}>
       <div className="message__wrapper">
-        {/* <ReactMarkdown
+        <ReactMarkdown
           className={'message__markdown text-left'}
           remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
           components={{
@@ -39,8 +39,8 @@ const ChatMessage = (props) => {
           }}
         >
           {text}
-        </ReactMarkdown> */}
-        {!ai ? (<TypeWriter text={text} speed={20}></TypeWriter>): text}
+        </ReactMarkdown>
+        {/* {ai ? (<TypeWriter text={text} speed={20}></TypeWriter>): text} */}
         <div className="text-left message__createdAt">{moment(createdAt).calendar()}
         <TextToSpeech content={text}></TextToSpeech>
         </div>
