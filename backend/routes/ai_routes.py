@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.ai_controllers import predict_disease, send_message, chat_with_ai, generate_follow_up_questions, questions_for_treatement, generate_treatement_plan, generate_dataset_from_sample, generate_dataset_from_description
+from controllers.ai_controllers import predict_disease, send_message, chat_with_ai, generate_follow_up_questions, questions_for_treatement, generate_treatement_plan, generate_dataset_from_sample, generate_dataset_from_description, chat_with_image, predict_disease_from_image, extract_med_from_image
 
 ai_routes = Blueprint('ai', __name__)
 
@@ -24,3 +24,8 @@ ai_routes.route('/generate-dataset-from-sample', methods=['POST'])(generate_data
 ai_routes.route('/generate-dataset-from-description', methods=['POST'])(generate_dataset_from_description)  # {size, fields, descriptions}
 
 ## [ Queriying from image ]
+ai_routes.route('/chat-with-image', methods=['POST'])(chat_with_image)
+
+ai_routes.route('/disease-from-image', methods=['POST'])(predict_disease_from_image) # {image}
+
+ai_routes.route('/extract-report-image', methods=['POST'])(extract_med_from_image) # {image}
