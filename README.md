@@ -1,4 +1,7 @@
-# MedGenAI
+# <img src="https://res.cloudinary.com/dztzcfuza/image/upload/v1729107624/logo4-removebg-preview_yvbjjx.png" width="200px;" alt=""/> MedGenAI 
+
+
+
 
 ## Overview
 
