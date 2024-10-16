@@ -104,7 +104,7 @@ Make sure you have the following installed on your system:
 ---
 
 
-#some glimpses of our project -MedGen Ai
+# Some glimpses of our project -MedGen Ai
 
 ![image](https://github.com/user-attachments/assets/da5b416e-ee82-4adb-9889-cf68d58520db)
 
