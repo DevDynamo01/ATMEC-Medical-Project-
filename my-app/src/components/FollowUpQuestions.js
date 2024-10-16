@@ -8,7 +8,7 @@ import Loader from "./Loader";
 const FollowUpQuestions = () => {
   const [inputValue, setInputValue] = useState("");
   const [possibleDisease,setPossibleDisease]=useState([]);
-  const [FollowQuestions,setFollowQuestions]=useState(["what is you problem 1 jjjjjjjjjjjjjjjjjjjj","what is your porblem 2 kkkkkkkkkkkkkkkkkkkkk kkkkkkkkkkkk","what is your problem 3","what is your problem 4"]);
+  const [FollowQuestions,setFollowQuestions]=useState([]);
   const [answers, setAnswers] = useState(Array(FollowQuestions.length).fill(""));
   const [predictDisease,setPredictDisease]=useState();
   const [treatmentQuestions,setTreatmentQuestions]=useState();
