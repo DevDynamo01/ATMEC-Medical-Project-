@@ -149,7 +149,7 @@ Make sure you have the following installed on your system:
 
 <td align="center"><a href="https://github.com/chaman56"><img src="https://avatars.githubusercontent.com/u/76009420?v=4" width="100px;" alt=""/><br /><sub><b>Chaman yadav</b></sub></a></td>
 
-<td align="center"><a href="https://github.com/Dilesh-Bisen"><img src="[https://avatars.githubusercontent.com/u/145834235?v=4](https://media.licdn.com/dms/image/v2/D4E03AQG-7NdypiLUjg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719986023825?e=1734566400&v=beta&t=uoOAUhPToTz47pVSWbfHuYlM8lh_wwNTwLSNj5zLjjE)" width="100px;" alt=""/><br /><sub><b>Dilesh Bisen</b></sub></a></td>
+<td align="center"><a href="https://github.com/Dilesh-Bisen"><img src="https://media.licdn.com/dms/image/v2/D4E03AQG-7NdypiLUjg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719986023825?e=1734566400&v=beta&t=uoOAUhPToTz47pVSWbfHuYlM8lh_wwNTwLSNj5zLjjE" width="100px;" alt=""/><br /><sub><b>Dilesh Bisen</b></sub></a></td>
   
  </tr>
 </table>
