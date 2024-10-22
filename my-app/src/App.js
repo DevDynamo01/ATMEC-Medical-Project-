@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './App2.css';
 import './Root.css';
 // import VoiceWidget from "./VoiceWidget";
 import Dictaphone from './components/SpeechRecognition';
