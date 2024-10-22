@@ -31,7 +31,10 @@ const HomePage = () => {
           <HomeButton text={'Start Chat'} path={'/chatbot'}></HomeButton>
           <HomeButton text={'Disease Diagonsis'} path={'/diagonsis'}></HomeButton>
           <HomeButton text={'Generate DataSet By Description'} path={'/generateData'}></HomeButton>
-          <HomeButton text={'Generate DataSet'} path={'/generateDataFromSample'}></HomeButton>
+          <HomeButton
+            text={'Generate DataSet from Sample'}
+            path={'/generateDataFromSample'}
+          ></HomeButton>
           <HomeButton text={'Analyze Image'} path={'/uploadImage'}></HomeButton>
           <HomeButton text={'Analyze Medical Documents'} path={'/handle-uploader'}></HomeButton>
         </div>
