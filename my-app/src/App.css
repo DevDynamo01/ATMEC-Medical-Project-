@@ -186,6 +186,22 @@
   border-radius: 6px;
   margin-top: 20px;
 }
+.covariancebutton {
+  background-color: rgba(117, 12, 245, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+.accuracybutton {
+  background-color: rgba(117, 12, 245, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
 
 .sizeInputBox {
   padding: 6px 6px;

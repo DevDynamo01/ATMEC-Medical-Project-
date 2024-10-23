@@ -30,6 +30,15 @@ const DynamicForm = () => {
       descriptions: fields.map((item) => item.description),
     };
 
+    // const handleGenerateDataset = async () => {
+    //   setLoading(true);
+    //   const data = {
+    //     size: size,
+    //     fields: fields.map((item) => item.field),
+    //     descriptions: fields.map((item) => item.description),
+    //   }
+    // };
+
     try {
       const response = await fetch('http://127.0.0.1:5000/generate-dataset-from-description', {
         method: 'POST',
@@ -62,6 +71,53 @@ const DynamicForm = () => {
       setLoading(false); // Hide loader once API call completes
     }
   };
+
+  // const handleCalculateCovariance = async () => {
+  //   if (!dataset) return;
+  //   setLoading(true);
+
+  //   try {
+  //     const response = await fetch('http://127.0.0.1:5000/calculate-covariance', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ dataset }),
+  //     });
+
+  //     const result = await response.json();
+  //     if (result?.covariance_matrix) {
+  //       setCovarianceMatrix(result.covariance_matrix);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error calculating covariance matrix:', error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const handleGenerateAccuracyGraph = async () => {
+  //   setLoading(true);
+
+  //   try {
+  //     const response = await fetch('http://127.0.0.1:5000/generate-accuracy-graph', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ dataset }), // If your accuracy graph depends on the dataset
+  //     });
+
+  //     const result = await response.json();
+  //     if (result?.accuracy_graph) {
+  //       setAccuracyData(result.accuracy_graph);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error generating accuracy graph:', error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // Function to download CSV
   const downloadCSV = () => {
@@ -140,6 +196,12 @@ const DynamicForm = () => {
             <button type="submit" className="submitbutton">
               Submit
             </button>
+            {/* <button onClick={handleCalculateCovariance} className="covariancebutton">
+              Covariance Matrix
+            </button>
+            <button onClick={handleGenerateAccuracyGraph} className="accuracybutton">
+              Accuracy Graph
+            </button> */}
           </div>
         </form>
 
