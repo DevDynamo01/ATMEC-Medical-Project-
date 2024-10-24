@@ -31,7 +31,7 @@ function App() {
           path="/chatbot"
           element={
             <ChatContextProvider>
-              <div className="flex transition duration-500 ease-in-out">
+              <div className="flex transition duration-500 ease-in-out mt-[var(--marginNavBar)]">
                 <SideBar />
                 <ChatView />
               </div>

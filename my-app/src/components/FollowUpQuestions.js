@@ -104,28 +104,30 @@ const FollowUpQuestions = () => {
   };
 
   return (
-    <div className="followup-container">
-    <div className="w-full flex-row">
-      <input
-        type="text"
-        className="followup-inputBox"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Enter your follow-up question"
-      />
-      <button className="followup-sendButton" onClick={callBackendFolowUpQuestions}>
-        Send
-      </button>
-      </div>
+    <div className="followup-container mt-[var(--marginNavBar)]">
+        <div className="flex flex-row gap-10">
+            <div class="coolinput">
+              <label for="input" class="text">Symptoms</label>
+              <input type="text" placeholder="Enter you Synmtoms" name="input" className="input"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              />
+          </div>
+            <button className="followup-sendButton" onClick={callBackendFolowUpQuestions}>
+              Send
+            </button>
+          </div>
         <div>
         {
         possibleDisease && possibleDisease.length > 0 && 
-        (   <div className="flex gap-2">
-                <span>{"Possible Disease:"}</span>
-                {possibleDisease.map((ele, idx) => (
-                <span className="feedback-disease underline" key={idx}>{ele}</span>
-                ))
-                }
+        (   <div className="flex gap-2 border-2">
+                <span className="text-[var(--purpleColor)] font-bold text-[1.5rem]">{"Possible Disease:"}</span>
+                <div>
+                  {possibleDisease.map((ele, idx) => (
+                  <span className="feedback-disease underline" key={idx}>{ele}</span>
+                  ))
+                  }
+                </div>
             </div>
         )
         }

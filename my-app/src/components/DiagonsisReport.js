@@ -7,7 +7,7 @@ const DiagnosisReport = ({ data }) => {
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-blue-600">{data?.disease}</h2>
         <p className="text-sm text-gray-500">Confidence: {data?.confidence}</p>
-      </div>
+      </div> 
 
       {/* Summary Section */}
       <div className="mb-6">

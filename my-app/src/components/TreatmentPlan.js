@@ -2,7 +2,7 @@ import React from 'react';
 
 const TreatmentPlan = ({ data }) => {
   const { diagnosis, disclaimer, follow_up, lifestyle_modifications, medications, patient_details } = data.treatment_plan;
-
+ 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       {/* Diagnosis and Disclaimer */}

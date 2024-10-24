@@ -17,7 +17,7 @@ const FeedbackQuestions = ({ FollowQuestions,answers,setAnswers}) => {
       <div className="feedback-disease">
         Please Respond to Follow-up-questions...
       </div>
-         {
+         { 
             FollowQuestions &&(
               FollowQuestions.map((questions,idx)=>(
                 displayQuestions.includes(idx) && (
