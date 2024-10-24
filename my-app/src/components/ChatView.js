@@ -9,7 +9,7 @@ import Setting from './Setting';
 import PromptPerfect from './PromptPerfect';
 import Dictaphone from './SpeechRecognition';
 import axios from 'axios';
-
+import ImagePreview from './ImagePreview';
 /**
  * A chat view component that displays a list of messages and a form for sending new messages.
  */
@@ -23,6 +23,7 @@ const ChatView = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPromptOpen, setModalPromptOpen] = useState(false);
   const [responseMessage,setResponseMessage]=useState("");
+  const [file, setFile] = useState(null);
   /**
    * Scrolls the chat area to the bottom.
    */
@@ -36,13 +37,14 @@ const ChatView = () => {
    * @param {string} newValue - The text of the new message.
    * @param {boolean} [ai=false] - Whether the message was sent by an AI or the user.
    */
-  const updateMessage = (newValue, ai = false) => {
+  const updateMessage = (newValue, ai = false,imageLink="") => {
     const id = Date.now() + Math.floor(Math.random() * 1000000);
     const newMsg = {
       id: id,
       createdAt: Date.now(),
       text: newValue,
       ai: ai,
+      imageLink:imageLink
     };
         addMessage(newMsg);
   };
@@ -60,7 +62,14 @@ const ChatView = () => {
     const newMsg = cleanPrompt;
 
     setFormValue('');
-    updateMessage(newMsg, false);
+    if(file){
+      // const response=await axios.post("url to upload image");
+      // const imageurl=response?.image_url;
+      updateMessage(newMsg,false,"https://res.cloudinary.com/dztzcfuza/image/upload/v1709010005/EdTech/syudveg2oxgxdgotabc0.jpg")
+    }
+    else{
+      updateMessage(newMsg, false);
+    }
     ChatWithBackend(newMsg);
     console.log("************************************ now the button is clicked")
     const response = 'I am a bot. This feature will be coming soon.';
@@ -169,8 +178,8 @@ const ChatView = () => {
 
   //  console.log("chat view",messages)
   return (
-    <div className="chatview">
-      <main className="chatview__chatarea">
+    <div className=" w-full   bg-slate-400 flex flex-col h-screen duration-300 overflow-hidden relative bg-">
+      <main className="chatview__chatarea gap-3">
         {messages.map((message, index) => (
          
           <ChatMessage key={index} message={{ ...message }} />
@@ -178,7 +187,7 @@ const ChatView = () => {
 
         <span ref={messagesEndRef}></span>
       </main>
-      <form className="form" onSubmit={sendMessage}>
+      <form className="form bg-[--lightBlueColor]" onSubmit={sendMessage}>
         <div className="flex items-stretch justify-between w-full">
           <textarea
             ref={inputRef}
@@ -189,26 +198,23 @@ const ChatView = () => {
             onChange={handleChange}
           />
           <div className="flex items-center">
-            <button type="submit" className="chatview__btn-send" disabled={!formValue}>
+            <button type="submit" className="chatview__btn-send my-auto" disabled={!formValue}>
               <MdSend size={30} />
             </button>
             <Dictaphone content={sendMessageForMic} />
-
-
-
-
+            <ImagePreview file={file} setFile={setFile}></ImagePreview>
           </div>
         </div>
 
       </form>
-      <Modal title="Prompt Perfect" modalOpen={modalPromptOpen} setModalOpen={setModalPromptOpen}>
+      {/* <Modal title="Prompt Perfect" modalOpen={modalPromptOpen} setModalOpen={setModalPromptOpen}>
         <PromptPerfect
           prompt={prompt}
           onChange={setPrompt}
           onCancelClicked={() => setModalPromptOpen(false)}
           onUseClicked={handleUseClicked}
         />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

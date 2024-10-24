@@ -14,7 +14,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,9 +38,9 @@
 
 .mic_container {
   display: flex;
-  flex-direction: column;
   /* border:1px solid rgb(145, 143, 143); */
   width: 100px;
+  height:100px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -55,6 +54,9 @@
 .speaker {
   font-size: 20px;
   cursor: pointer;
+}
+.speaker:hover{
+  color:blue;
 }
 .homePage {
   width: 100%;

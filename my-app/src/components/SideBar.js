@@ -27,7 +27,7 @@ const SideBar = () => {
   const clearChat = () => clearMessages();
 
   return (
-    <section className={` ${open ? 'w-screen lg:w-96' : 'w-16'} sidebar bg-[#282c34] text-white`}>
+    <section className={` ${open ? 'w-screen lg:w-96' : 'w-16'} sidebar bg-black/50 text-white`}>
       <div className="sidebar__app-bar ">
         <div className="flex items-center">
           <div className={`sidebar__app-logo ${!open && 'scale-0 hidden'}`}>
@@ -46,9 +46,9 @@ const SideBar = () => {
         </div>
       </div>
       <div className="nav">
-        <span className="border nav__item border-white text-white " onClick={clearChat}>
+        <span className="border nav__item border-white text-white bg-black" onClick={clearChat}>
           <div className="nav__icons">
-            <MdAdd className='text-white'/>
+            <MdAdd className='black'/>
           </div>
           <h1 className={`${!open && 'hidden'}`}>New chat</h1>
         </span>
