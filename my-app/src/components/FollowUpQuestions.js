@@ -120,14 +120,12 @@ const FollowUpQuestions = () => {
         <div>
         {
         possibleDisease && possibleDisease.length > 0 && 
-        (   <div className="flex gap-2 border-2">
+        (   <div className="flex gap-2 border-2 px-2 rounded-lg">
                 <span className="text-[var(--purpleColor)] font-bold text-[1.5rem]">{"Possible Disease:"}</span>
-                <div>
                   {possibleDisease.map((ele, idx) => (
                   <span className="feedback-disease underline" key={idx}>{ele}</span>
                   ))
                   }
-                </div>
             </div>
         )
         }
