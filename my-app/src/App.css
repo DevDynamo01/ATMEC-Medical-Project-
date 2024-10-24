@@ -58,13 +58,175 @@
 .speaker:hover{
   color:blue;
 }
-.homePage {
-  width: 100%;
+
+.navbar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  /* box-shadow: 0 1px 5px #6f6f6f; */
+  background: transparent;
+  color: #283779;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
+
+.scrolled {
+  backdrop-filter: blur(2px);
+}
+
+.navbar .logo {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 20px;
+  text-decoration: underline;
+}
+
+.ulLinks {
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  gap: 12px;
+}
+
+.linkItem {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.linkItem {
+  position: relative;
+  cursor: pointer;
+  padding: 0px 10px;
+}
+
+.linkItem::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 2px;
+  bottom: 0;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.linkItem:hover::after {
+  width: 90%;
+}
+
+.userProfile {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: aliceblue;
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  /* margin-bottom: 100px; */
+  /* position: relative; */
+}
+
+.homepage-background-image {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  will-change: transform, opacity, filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-repeat: no-repeat;
+  z-index: 100;
+  background-image: url(https://technext.github.io/live-doc/v1.0.0/assets/img/gallery/hero-bg.png);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.homepageChatBot {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #05c37d;
+  cursor: pointer;
+  position: fixed;
+  right: 20px;
+  z-index: 1000;
+  bottom: 100px;
+}
+
+.homepageChatBot:hover {
+  background-color: #09f467da;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  width: 40%;
+}
+
+.description h3 {
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.description h3 .Homepageheading {
+  color: #05c37d;
+}
+
+.moving-text {
+  color: white;
+}
+
+.description p {
+  color: #283779;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.videoFile {
+  width: 450px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #333;
+  overflow: hidden;
+}
+
+.cardCompnent {
+  width: 90%;
+  background-color: white;
+  position: relative;
+  top: -100px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px #33333393;
+  padding: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .imageComponent {
@@ -188,6 +350,22 @@
   border-radius: 6px;
   margin-top: 20px;
 }
+.covariancebutton {
+  background-color: rgba(117, 12, 245, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+.accuracybutton {
+  background-color: rgba(117, 12, 245, 0.982);
+  width: 150px;
+  padding: 5px 5px;
+  color: white;
+  border-radius: 6px;
+  margin-top: 20px;
+}
 
 .sizeInputBox {
   padding: 6px 6px;
@@ -207,12 +385,13 @@
 .file-upload-container {
   padding: 10px;
   margin: 10px;
-  width: 100%;
+  width: 99%;
   background-color: #333;
   display: flex;
-  /* justify-content: center;   */
+  /* justify-content: space-around; */
   align-items: center;
   overflow-y: scroll;
+  /* border:2px solid red; */
 }
 .file-upload-container button {
   border: 2px solid black;
@@ -224,6 +403,112 @@
   background-color: azure;
   color: black;
 }
+.button-for-file-upload {
+  border: none;
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  background-color: #488aec;
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 0.5rem;
+  user-select: none;
+  gap: 0.75rem;
+  box-shadow:
+    0 4px 6px -1px #488aec31,
+    0 2px 4px -1px #488aec17;
+  transition: all 0.6s ease;
+}
+
+.loader_div{
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-for-file-upload:hover {
+  box-shadow:
+    0 10px 15px -3px #488aec4f,
+    0 4px 6px -2px #488aec17;
+}
+
+.button-for-file-upload:focus,
+.button-for-file-upload:active {
+  opacity: 0.85;
+  box-shadow: none;
+}
+
+.button-for-file-upload svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.simple-heading{
+  font-size: 1.4rem;
+  font-family: 'Times New Roman', Times, serif;
+  padding-right:50px ;
+}
+/* From Uiverse.io by Satwinder04 */ 
+/* Input container */
+.input-container {
+  position: relative;
+  margin: 20px;
+  width:400px;
+  /* border:1px solid red; */
+}
+
+/* Input field */
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: transparent;
+}
+
+/* Input label */
+.input-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  color: rgba(204, 204, 204, 0);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Input highlight */
+.input-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #007bff;
+  transition: all 0.3s ease;
+}
+
+/* Input field:focus styles */
+.input-field:focus + .input-label {
+  top: -20px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+.input-field:focus + .input-label + .input-highlight {
+  width: 100%;
+}
+
+
 
 .size-input-of-dataset {
   padding: 10px;
@@ -233,7 +518,7 @@
   outline: none;
   border: 1px solid #ccc; /* Optional: set a custom border */
 }
-
+/* ============data table CSS============== */
 .table_container {
   padding: 10px;
   margin: 10px;
@@ -268,10 +553,52 @@ td {
   margin: 2px;
 }
 
-.download-button {
-  background-color: rgb(32, 32, 173);
+
+
+/* =========generate Button Csss========== */
+/* From Uiverse.io by AlimurtuzaCodes */ 
+.generate-btn {
+  border: none;
+  border:2px solid;
+  width:2em;
+  height: 4em;
+  border-radius: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #1C1A1C;
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
+  display: flex;
 }
 
-.download-button:hover {
-  background-color: rgb(7, 7, 253);
+.sparkle {
+  fill: #AAAAAA;
+  transition: all 800ms ease;
+
 }
+
+.text {
+  font-weight: 600;
+  color: #AAAAAA;
+  font-size: medium;
+}
+
+.generate-btn:hover {
+  background: linear-gradient(0deg,#A47CF3,#683FEA);
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+  inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+  0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+  0px 0px 180px 0px #9917FF;
+  transform: translateY(-2px);
+}
+
+.generate-btn:hover .text {
+  color: white;
+}
+
+.generate-btn:hover .sparkle {
+  fill: white;
+  transform: scale(1.2);
+} 

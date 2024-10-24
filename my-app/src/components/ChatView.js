@@ -178,7 +178,7 @@ const ChatView = () => {
 
   //  console.log("chat view",messages)
   return (
-    <div className=" w-full   bg-slate-400 flex flex-col h-screen duration-300 overflow-hidden relative bg-">
+    <div className=" w-full bg-white flex flex-col h-screen duration-300 overflow-hidden relative bg-">
       <main className="chatview__chatarea gap-3">
         {messages.map((message, index) => (
          

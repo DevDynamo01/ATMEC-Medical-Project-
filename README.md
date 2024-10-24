@@ -93,7 +93,7 @@ Make sure you have the following installed on your system:
 
 - cd backend<br>
 - pip install -r requirements.txt
-- creaet a .env file and add GOOGLE_API_KEY="..." # Gemini Api key from https://aistudio.google.com
+- create a .env file and add GOOGLE_API_KEY="..." # Gemini Api key from https://aistudio.google.com
 - python app.py
 
 ### For the react frontend
@@ -104,11 +104,14 @@ Make sure you have the following installed on your system:
 ---
 
 
-#some glimpses of our project -MedGen Ai
+# Some glimpses of our project -MedGen Ai
 
 ![image](https://github.com/user-attachments/assets/da5b416e-ee82-4adb-9889-cf68d58520db)
 
 ![image](https://github.com/user-attachments/assets/96a7cdde-1ae7-4ac3-9451-a0bb67e37cbf)
+
+![image](https://github.com/user-attachments/assets/a1b115e5-472f-4e73-8bdc-16276b929357)
+
 
 ![image](https://github.com/user-attachments/assets/4cddc856-79db-471c-be0f-db8ce29686ef)
 
@@ -146,7 +149,7 @@ Make sure you have the following installed on your system:
 
 <td align="center"><a href="https://github.com/chaman56"><img src="https://avatars.githubusercontent.com/u/76009420?v=4" width="100px;" alt=""/><br /><sub><b>Chaman yadav</b></sub></a></td>
 
-<td align="center"><a href="https://github.com/Dilesh-Bisen"><img src="https://avatars.githubusercontent.com/u/145834235?v=4" width="100px;" alt=""/><br /><sub><b>Dilesh Bisen</b></sub></a></td>
+<td align="center"><a href="https://github.com/Dilesh-Bisen"><img src="https://media.licdn.com/dms/image/v2/D4E03AQG-7NdypiLUjg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719986023825?e=1734566400&v=beta&t=uoOAUhPToTz47pVSWbfHuYlM8lh_wwNTwLSNj5zLjjE" width="100px;" alt=""/><br /><sub><b>Dilesh Bisen</b></sub></a></td>
   
  </tr>
 </table>
@@ -164,6 +167,6 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ---
 
-Feel free to customize this template to fit the specifics of your project!
+Feel free to customize this template to fit the specifics of your project !!
 
 

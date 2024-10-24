@@ -1,0 +1,38 @@
+[
+  {
+    "imageURL": "chatbot.png",
+    "buttonText": "Start Chat",
+    "description": "The chatbot offers real-time, personalized medical advice and tailored treatment recommendations.",
+    "routeTo": "/chatbot"
+  },
+  {
+    "imageURL": "diseasediagnsis.png",
+    "buttonText": "Disesase Diagnosis",
+    "description": "The system uses multimodal AI to analyze data and accurately diagnose diseases, asking follow-up questions if needed.",
+    "routeTo": "/diagonsis"
+  },
+  {
+    "imageURL": "imageanalysis.png",
+    "buttonText": "Analyze Image",
+    "description": "The image analysis feature uses AI to examine medical images, detecting anomalies and assisting in accurate disease diagnosis.",
+    "routeTo": "/uploadImage"
+  },
+  {
+    "imageURL": "dataset.png",
+    "buttonText": "Generate Dataset",
+    "description": "The dataset generation feature produces synthetic medical data to improve AI model accuracy for diagnosis and treatment.",
+    "routeTo": "/generateData"
+  },
+  {
+    "imageURL": "doctor.png",
+    "buttonText": "Connect with Doctor",
+    "description": "The Connect with Doctor feature links users to healthcare professionals for personalized advice and treatment.",
+    "routeTo": "/chatbot"
+  },
+  {
+    "imageURL": "watch.png",
+    "buttonText": "Connect with IOT",
+    "description": "The Connect with Doctor feature links users to healthcare professionals for personalized advice and treatment.",
+    "routeTo": "/chatbot"
+  }
+]

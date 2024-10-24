@@ -27,7 +27,7 @@ const SideBar = () => {
   const clearChat = () => clearMessages();
 
   return (
-    <section className={` ${open ? 'w-screen lg:w-96' : 'w-16'} sidebar bg-black/50 text-white`}>
+    <section className={` ${open ? 'w-screen lg:w-96' : 'w-16'} sidebar bg-gray-300 text-black`}>
       <div className="sidebar__app-bar ">
         <div className="flex items-center">
           <div className={`sidebar__app-logo ${!open && 'scale-0 hidden'}`}>
@@ -35,18 +35,18 @@ const SideBar = () => {
               <img width="30" src={logo} alt="Logo" />
             </span>
           </div>
-          <h1 className={`${!open && 'scale-0 hidden text-white'}`}>Med-Gen AI</h1>
+          <h1 className={`${!open && 'scale-0 hidden text-black'}`}>Med-Gen AI</h1>
         </div>
         <div className={''} onClick={() => setOpen(!open)}>
           {open ? (
-            <MdChevronLeft className=" text-white sidebar__btn-icon" />
+            <MdChevronLeft className=" text-black sidebar__btn-icon" />
           ) : (
-            <MdChevronRight className=" text-white sidebar__btn-icon" />
+            <MdChevronRight className=" text-black sidebar__btn-icon" />
           )}
         </div>
       </div>
       <div className="nav">
-        <span className="border nav__item border-white text-white bg-black" onClick={clearChat}>
+        <span className="border nav__item border-black text-black bg-gray-300" onClick={clearChat}>
           <div className="nav__icons">
             <MdAdd className='black'/>
           </div>
