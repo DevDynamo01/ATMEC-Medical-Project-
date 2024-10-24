@@ -32,7 +32,7 @@ const TextToSpeech = ({ content }) => {
   return (
     <span className="speak">
       {/* <button onClick={speak}>Speak</button> */}
-      <GiSpeaker onClick={speak} className="speaker"></GiSpeaker>
+      <GiSpeaker  onClick={speak} className="speaker"></GiSpeaker>
     </span>
   );
 };

@@ -3,6 +3,8 @@ from controllers.ai_controllers import predict_disease, send_message, chat_with_
     generate_treatement_plan, generate_dataset_from_sample, generate_dataset_from_description, chat_with_image, \
     predict_disease_from_image, extract_med_from_image, drug_from_smiles
 
+from controllers.metrics import get_matrix_from_file , get_metrics_from_json
+
 from controllers.docking import dock_smile
 
 ai_routes = Blueprint('ai', __name__)
@@ -38,3 +40,6 @@ ai_routes.route('/drug-from-smile', methods=['POST'])(drug_from_smiles)  # {smil
 
 ai_routes.route('/validate-reaction', methods=['POST'])(dock_smile)  # {smiles : C1=CC=C(C=C1N)S(=O)(=O)O, target: 1dxa}
 
+ai_routes.route('/metric-from-file', methods=['POST'])(get_matrix_from_file)  # { files[file] }
+
+ai_routes.route('/metric-from-json', methods=['POST'])(get_metrics_from_json)  # { dataset : [ { ... }, { ... } , ... ] }
