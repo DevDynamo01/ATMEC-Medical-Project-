@@ -2,9 +2,9 @@ import React from 'react';
 
 const TreatmentPlan = ({ data }) => {
   const { diagnosis, disclaimer, follow_up, lifestyle_modifications, medications, patient_details } = data.treatment_plan;
-
+ 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg border-[3px] border-blue-600">
       {/* Diagnosis and Disclaimer */}
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-blue-600">{diagnosis}</h2>

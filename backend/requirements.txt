@@ -11,6 +11,8 @@ Pillow==11.0.0
 protobuf==5.28.3
 pymongo==4.10.1
 python-dotenv==1.0.1
+python_bcrypt==0.3.2
 rdkit==2024.3.5
+Requests==2.32.3
 seaborn==0.13.2
 torch==2.4.1

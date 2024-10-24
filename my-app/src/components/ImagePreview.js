@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useContext} from 'react';
 import { useRef } from 'react';
 import { RxCross2 } from "react-icons/rx";
+import DataContext from '../context/dataContext';
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 function ImagePreview({file,setFile}) {
   const [fileDataURL, setFileDataURL] = useState(null);
+  const {sendImagePreview,setSendImagePreview}=useContext(DataContext);
   const hiddenFileInput = useRef(null);
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -11,7 +13,14 @@ function ImagePreview({file,setFile}) {
   function clearInput(){
     setFile(null);
     setFileDataURL(null);
+    setSendImagePreview(false);
   }
+  useEffect(()=>{
+    fileDataURL && setSendImagePreview(true);
+  },[fileDataURL])
+  // useEffect(()=>{
+  //   !sendImagePreview && clearInput();
+  // },[sendImagePreview])
   const changeHandler = (e) => {
     const file = e.target.files[0];
     if (!file.type.match(imageMimeType)) {
@@ -54,7 +63,7 @@ function ImagePreview({file,setFile}) {
             style={{display: 'none'}}
           />
       </div>
-      {fileDataURL ?
+      {sendImagePreview ?
         <p onClick={clearInput} className="absolute w-[200px] h-[200px] overflow-hidden z-20 -top-[230px] right-[200px] p-4 border rounded-lg backdrop-blur-md">
             <RxCross2 className='absolute right-0 top-0 size-[30px] hover:scale-125 cursor-pointer'/>
           {
