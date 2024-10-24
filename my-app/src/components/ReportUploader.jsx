@@ -42,9 +42,33 @@ const ReportUploader = () => {
     }
   };
 
+
+
+
+
+
+
+
+
+
+
+
+const handleTheCall=async()=>{
+  url=``
+  const response=await fetch(url);
+  const result=await response.json();
+  console.log(data);
+
+}
+
+
+
+
+
+
+
   return (
     <div className="flex flex-col  items-center min-h-screen p-4 ">
-
       <div className="file-upload-container w-full flex justify-evenly">
         <span className="simple-heading">Medical Report Uploader</span>
         {/* <h1 className="text-2xl font-bold mb-4 text-white">Medical Report Uploader</h1> */}
@@ -72,12 +96,12 @@ const ReportUploader = () => {
         {error && <div className="mt-4 text-red-600 font-medium">{error}</div>}
       </div>
 
-{loading && <div div className='loader_div' >
-  <Loader>
-    
-  </Loader>
-</div>}
-
+      <button onClick={handleTheCall}>Call The API</button>
+      {loading && (
+        <div div className="loader_div">
+          <Loader></Loader>
+        </div>
+      )}
 
       {responseData && (
         <div className="w-[50%] mt-4 p-4 bg-white shadow-md rounded-lg">

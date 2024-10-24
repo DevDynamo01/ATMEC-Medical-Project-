@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+:root {
+  --blueColor: #81d2f0;
+  --greenColor: #6aa84f;
+  --lightBlueColor: #b2dded;
+  --lightGreenColor: #84f057;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -40,7 +45,7 @@
   display: flex;
   /* border:1px solid rgb(145, 143, 143); */
   width: 100px;
-  height:100px;
+  height: 100px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -55,8 +60,8 @@
   font-size: 20px;
   cursor: pointer;
 }
-.speaker:hover{
-  color:blue;
+.speaker:hover {
+  color: blue;
 }
 
 .navbar {
@@ -420,23 +425,21 @@
   border-radius: 0.5rem;
   user-select: none;
   gap: 0.75rem;
-  box-shadow:
-    0 4px 6px -1px #488aec31,
-    0 2px 4px -1px #488aec17;
+  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
   transition: all 0.6s ease;
 }
 
-.loader_div{
-  width:100%;
-  height:100%;
+.loader_div {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  padding-top: 200px;
 }
 .button-for-file-upload:hover {
-  box-shadow:
-    0 10px 15px -3px #488aec4f,
-    0 4px 6px -2px #488aec17;
+  box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
 }
 
 .button-for-file-upload:focus,
@@ -449,18 +452,23 @@
   width: 1.25rem;
   height: 1.25rem;
 }
-.simple-heading{
+.simple-heading {
   font-size: 1.4rem;
   font-family: 'Times New Roman', Times, serif;
-  padding-right:50px ;
+  padding-right: 50px;
 }
-/* From Uiverse.io by Satwinder04 */ 
+/* From Uiverse.io by Satwinder04 */
 /* Input container */
 .input-container {
   position: relative;
   margin: 20px;
-  width:400px;
+  width: 400px;
   /* border:1px solid red; */
+}
+.image-container {
+  width: 100%;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 /* Input field */
@@ -508,8 +516,6 @@
   width: 100%;
 }
 
-
-
 .size-input-of-dataset {
   padding: 10px;
   width: 300px;
@@ -518,6 +524,47 @@
   outline: none;
   border: 1px solid #ccc; /* Optional: set a custom border */
 }
+
+/* ============btn bar in the data generation======================== */
+.data-analysis-section {
+  width: 100%;
+  background-color: #d3d3d3;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  margin: 0;
+  padding: 0;
+}
+.btn-for-different-section {
+  padding: 10px;
+  margin: 10px;
+}
+.analysis-container-image {
+  width: 100%;
+  display: flex;
+}
+
+.analysis-container-image div {
+  width: 50%;
+  /* padding:5px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  justify-content: center;
+  border: 2px solid rgb(33, 12, 12);
+}
+.each-image {
+  width: 100%;
+}
+
+.image-of-data-visualisation {
+  width: 600px;
+  padding: 5px;
+  margin: 5px;
+}
+
 /* ============data table CSS============== */
 .table_container {
   padding: 10px;
@@ -553,44 +600,40 @@ td {
   margin: 2px;
 }
 
-
-
 /* =========generate Button Csss========== */
-/* From Uiverse.io by AlimurtuzaCodes */ 
+/* From Uiverse.io by AlimurtuzaCodes */
 .generate-btn {
   border: none;
-  border:2px solid;
-  width:2em;
+  border: 2px solid;
+  width: 2em;
   height: 4em;
   border-radius: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background: #1C1A1C;
+  background: #1c1a1c;
   cursor: pointer;
   transition: all 450ms ease-in-out;
   display: flex;
 }
 
 .sparkle {
-  fill: #AAAAAA;
+  fill: #aaaaaa;
   transition: all 800ms ease;
-
 }
 
 .text {
   font-weight: 600;
-  color: #AAAAAA;
+  color: #aaaaaa;
   font-size: medium;
 }
 
 .generate-btn:hover {
-  background: linear-gradient(0deg,#A47CF3,#683FEA);
+  background: linear-gradient(0deg, #a47cf3, #683fea);
   box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
-  inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
-  0px 0px 0px 4px rgba(255, 255, 255, 0.2),
-  0px 0px 180px 0px #9917FF;
+    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+    0px 0px 180px 0px #9917ff;
   transform: translateY(-2px);
 }
 
@@ -601,4 +644,8 @@ td {
 .generate-btn:hover .sparkle {
   fill: white;
   transform: scale(1.2);
-} 
+}
+
+.drug-generation-container {
+  width: 100%;
+}
