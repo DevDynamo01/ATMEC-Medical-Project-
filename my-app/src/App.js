@@ -23,17 +23,24 @@ import ImageUpload from './DiesesFormImage';
 import ReportUploader from './components/ReportUploader';
 import Druggeneration from './components/Druggeneration';
 
+import { useNavigate } from 'react-router-dom';
+import DoctorsProfilePage from './DoctorsProfilePage';
+import DoctorChat from './DoctorChat';
 function App() {
+  const navigate = useNavigate();
   return (
     <div className="App">
       <ResponsiveAppBar />
+      <div className="homepageChatBot" onClick={() => navigate('/chatbot')}>
+        <img src="chatbot.png" />
+      </div>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/chatbot"
           element={
             <ChatContextProvider>
-              <div className="flex transition duration-500 ease-in-out">
+              <div className="flex transition duration-500 ease-in-out mt-[var(--marginNavBar)]">
                 <SideBar />
                 <ChatView />
               </div>
@@ -46,6 +53,8 @@ function App() {
         <Route path="/generateDataFromSample" element={<UploadFile />}></Route>
         {/* <Route path="/druggeneration" element={<Druggeneration />}></Route> */}
         <Route path="/generateData" element={<DynamicForm />}></Route>
+        <Route path="/doctors-profile" element={<DoctorsProfilePage />}></Route>
+        <Route path="/doctor-chat" element={<DoctorChat />}></Route>
       </Routes>
     </div>
   );
