@@ -3,6 +3,7 @@ import Papa from 'papaparse';
 import axios from 'axios';
 import Loader from './Loader';
 import AddFileButton from './AddFileButton';
+import ImageDisplay from './SampleDataset';
 
 const UploadFile = () => {
   const [parsedData, setParsedData] = useState([]);
@@ -216,6 +217,7 @@ const UploadFile = () => {
           </table>
         </div>
       )}
+      <ImageDisplay />
     </div>
   );
 };
