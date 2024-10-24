@@ -53,10 +53,6 @@ const HomePage = () => {
           return <FeaturesButtonCard key={index} feature={feature} />;
         })}
       </div>
-
-      <div className="homepageChatBot" onClick={() => navigate('/chatbot')}>
-        <img src="chatbot.png" />
-      </div>
       {/* {FeatureButtonJSON.map((data, key) => {});
       <div className="cardCompnent">
         {data.imageURL}

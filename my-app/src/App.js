@@ -21,10 +21,17 @@ import DynamicForm from './DynamicForm';
 import UploadFile from './components/UploadFile';
 import ImageUpload from './DiesesFormImage';
 import ReportUploader from './components/ReportUploader';
+import { useNavigate } from 'react-router-dom';
+import DoctorsProfilePage from './DoctorsProfilePage';
+import DoctorChat from './DoctorChat';
 function App() {
+  const navigate = useNavigate();
   return (
     <div className="App">
       <ResponsiveAppBar />
+      <div className="homepageChatBot" onClick={() => navigate('/chatbot')}>
+        <img src="chatbot.png" />
+      </div>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route
@@ -43,6 +50,8 @@ function App() {
         <Route path="/handle-uploader" element={<ReportUploader></ReportUploader>}></Route>
         <Route path="/generateDataFromSample" element={<UploadFile />}></Route>
         <Route path="/generateData" element={<DynamicForm />}></Route>
+        <Route path="/doctors-profile" element={<DoctorsProfilePage />}></Route>
+        <Route path="/doctor-chat" element={<DoctorChat />}></Route>
       </Routes>
     </div>
   );

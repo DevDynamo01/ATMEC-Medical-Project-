@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Dr. Ayesha Khan",
+    "field": "Cardiology",
+    "description": "Specializes in heart conditions and cardiovascular surgery with over 15 years of experience.",
+    "address": "123 Heart Avenue, Cardio City, 450021",
+    "mobile": "+1 555-123-4567",
+    "email": "ayesha.khan@cardiohealth.com",
+    "consultation_fee": 1200,
+    "rating": 4.8,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Raj Malhotra",
+    "field": "Dermatology",
+    "description": "Expert in skin-related diseases and treatments, with a focus on cosmetic dermatology.",
+    "address": "456 Skin Street, Glowtown, 120034",
+    "mobile": "+1 555-234-5678",
+    "email": "raj.malhotra@skincare.com",
+    "consultation_fee": 800,
+    "rating": 4.5,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Emily White",
+    "field": "Pediatrics",
+    "description": "Over 10 years of experience treating children and providing pediatric care.",
+    "address": "789 Childcare Road, Kidstown, 560090",
+    "mobile": "+1 555-345-6789",
+    "email": "emily.white@kidshealth.com",
+    "consultation_fee": 950,
+    "rating": 4.7,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Vikram Patel",
+    "field": "Orthopedics",
+    "description": "Highly experienced in treating musculoskeletal system disorders and injuries.",
+    "address": "101 Bone Lane, Jointville, 760043",
+    "mobile": "+1 555-456-7890",
+    "email": "vikram.patel@orthocare.com",
+    "consultation_fee": 1300,
+    "rating": 4.6,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Priya Sharma",
+    "field": "Gynecology",
+    "description": "Specializes in women's health, reproductive health, and childbirth.",
+    "address": "202 Women's Health Street, Healthville, 340076",
+    "mobile": "+1 555-567-8901",
+    "email": "priya.sharma@gynhealth.com",
+    "consultation_fee": 1100,
+    "rating": 4.9,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. John Doe",
+    "field": "Neurology",
+    "description": "Expert in treating disorders of the brain, spinal cord, and nervous system.",
+    "address": "303 Neuro Lane, Brainville, 230089",
+    "mobile": "+1 555-678-9012",
+    "email": "john.doe@neurocare.com",
+    "consultation_fee": 1500,
+    "rating": 4.8,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Sarah Lee",
+    "field": "Endocrinology",
+    "description": "Experienced in treating hormonal disorders, including diabetes and thyroid issues.",
+    "address": "404 Hormone Street, Endotown, 660031",
+    "mobile": "+1 555-789-0123",
+    "email": "sarah.lee@endocare.com",
+    "consultation_fee": 900,
+    "rating": 4.5,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Robert Smith",
+    "field": "Gastroenterology",
+    "description": "Specializes in the diagnosis and treatment of digestive system disorders.",
+    "address": "505 Stomach Lane, Digest City, 870014",
+    "mobile": "+1 555-890-1234",
+    "email": "robert.smith@gastrohealth.com",
+    "consultation_fee": 1150,
+    "rating": 4.4,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Lisa Wong",
+    "field": "Oncology",
+    "description": "Expert in cancer diagnosis, treatment, and personalized therapy plans.",
+    "address": "606 Cancer Avenue, Caretown, 950087",
+    "mobile": "+1 555-901-2345",
+    "email": "lisa.wong@oncohealth.com",
+    "consultation_fee": 1800,
+    "rating": 4.9,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  },
+  {
+    "name": "Dr. Michael Brown",
+    "field": "Psychiatry",
+    "description": "Experienced in diagnosing and treating mental health disorders.",
+    "address": "707 Mind Street, Mentalville, 680065",
+    "mobile": "+1 555-012-3456",
+    "email": "michael.brown@mentalcare.com",
+    "consultation_fee": 1000,
+    "rating": 4.7,
+    "image_url": "https://media.istockphoto.com/photos/headshot-portrait-of-smiling-male-doctor-with-tablet-picture-id1311511363?k=20&m=1311511363&s=612x612&w=0&h=FBV6v4Dh1pvpktzJIEcIhI6obktwrC2Mrsmr_6CW8fY="
+  }
+]

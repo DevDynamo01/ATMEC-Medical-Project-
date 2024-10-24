@@ -27,7 +27,7 @@
     "imageURL": "doctor.png",
     "buttonText": "Connect with Doctor",
     "description": "The Connect with Doctor feature links users to healthcare professionals for personalized advice and treatment.",
-    "routeTo": "/chatbot"
+    "routeTo": "/doctors-profile"
   },
   {
     "imageURL": "watch.png",
