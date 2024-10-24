@@ -4,6 +4,9 @@ import axios from 'axios';
 import Loader from './Loader';
 import AddFileButton from './AddFileButton';
 import ImageDisplay from './SampleDataset';
+import TableForData from './TableForData';
+import Base64Loader from './Base64Loader';
+import { useTheme } from 'styled-components';
 
 const UploadFile = () => {
   const [parsedData, setParsedData] = useState([]);
@@ -14,6 +17,68 @@ const UploadFile = () => {
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
   const [isFileExist, setFileExist] = useState(false);
+  const [inputJsonData, setInputJsonData] = useState();
+  const [outputJsonData, setOutputJsonData] = useState();
+  const [outputImageVisualisation, setOutputImageVisualisation] = useState();
+  const [inputImageVisualisation, setInputImageVisualisation] = useState();
+  const[LoadThisComponent,setLoadThisComponent]=useState("inputtable")
+
+const loaderHandler=(text)=>{
+setLoadThisComponent(text);
+}
+
+  const btnName = [
+    { name: 'Input table', path: '/input-table', dataSend: inputJsonData, text: 'table' },
+    { name: 'Output table', path: '/output-table', dataSend: outputJsonData, text: 'table' },
+    { name: 'Chart', path: '/output-table', dataSend: outputJsonData,  text: 'image' },
+  ];
+
+  const handleCsvParsing = (jsonData,text) => {
+    if(text!=="table") {loaderHandler("image");return;}
+    console.log('data come-> ', jsonData);
+
+    // Array to hold the ordered rows and values
+    const rowsArray = [];
+    const valuesArray = [];
+
+    // Loop through each row in the JSON data
+    jsonData.forEach((row, index) => {
+      rowsArray.push({ index: index, keys: Object.keys(row) }); // Include index to maintain order
+      valuesArray.push({ index: index, values: Object.values(row) }); // Include index to maintain order
+    });
+
+    // Sort rows and values by their index to ensure order
+    rowsArray.sort((a, b) => a.index - b.index);
+    valuesArray.sort((a, b) => a.index - b.index);
+
+    // Extract the actual rows and values without the index
+    const orderedRows = rowsArray.map((row) => row.keys);
+    const orderedValues = valuesArray.map((value) => value.values);
+
+    setTableRows(orderedRows[0]); // Set the first row as headers
+    setValues(orderedValues.slice(0, 15)); // Limit the values to the first 15 rows
+    loaderHandler(text);
+  };
+
+  const fetchMetricVisualisationForData = async (JsonData) => {
+    const sampleData = {
+      dataset: JsonData,
+    };
+    console.log(sampleData);
+    const url = 'http://127.0.0.1:5000/metric-from-json';
+    const response = await fetch(url, {
+      method: 'POST', // HTTP method
+      headers: {
+        'Content-Type': 'application/json', // Specify the content type
+      },
+      body: JSON.stringify(sampleData), // Convert sampleData to JSON and send it in the body
+    });
+    const result = await response.json();
+    // Extract all the keys
+    console.log('analysis result', result.visualizations);
+    // const keys = Object.keys(result.visualizations);
+    return result.visualizations;
+  };
 
   const changeHandler = (event) => {
     Papa.parse(event.target.files[0], {
@@ -23,53 +88,81 @@ const UploadFile = () => {
         const rowsArray = [];
         const valuesArray = [];
 
-        results.data.map((d) => {
-          rowsArray.push(Object.keys(d));
-          valuesArray.push(Object.values(d));
+        results.data.forEach((d, index) => {
+          rowsArray.push({ index: index, keys: Object.keys(d) });
+          valuesArray.push({ index: index, values: Object.values(d) });
         });
 
+        // Sort rows and values by their index to ensure order
+        rowsArray.sort((a, b) => a.index - b.index);
+        valuesArray.sort((a, b) => a.index - b.index);
+
+        // Extract the actual rows and values without the index
+        const orderedRows = rowsArray.map((row) => row.keys);
+        const orderedValues = valuesArray.map((value) => value.values);
+
         setParsedData(results.data); // Full parsed data
-        setTableRows(rowsArray[0]); // Set the headers (column names)
-        setValues(valuesArray); // Set the table values
+        setTableRows(orderedRows[0]); // Set the headers (column names)
+        setValues(orderedValues); // Set the table values
       },
     });
   };
-
   const rowChangeHandler = (event) => {
     setRowsToProcess(event.target.value); // Store the number of rows to process
   };
-
   const handleSubmit = async () => {
     const formattedData = {
       size: rowsToProcess, // Total number of rows
       sample: parsedData.slice(0, parsedData.length), // Limit rows if specified
     };
 
-    console.log(formattedData);
+    setInputJsonData(formattedData.sample); // Set input data (maybe a typo, should be setInputJsonData?)
 
-    // Sending JSON data to backend
-    setLoading(true);
-    await axios
-      .post('http://127.0.0.1:5000/generate-dataset-from-sample', formattedData)
-      .then((response) => {
-        console.log(response.data.dataset); // Assuming response.data contains the JSON object
+    try {
+      console.log('Fetching visualization for input data...');
 
-        // Step 1: Convert JSON to CSV
-        const jsonToConvert = response.data.dataset; // Assuming `dataset` is the key holding JSON data
+      // Fetch the visualization for the input data
+      const inputData = await fetchMetricVisualisationForData(formattedData.sample);
 
-        const csv = Papa.unparse(jsonToConvert); // Convert JSON to CSV using PapaParse
-        // Step 2: Create a Blob from the CSV data
-        const blob = new Blob([csv], { type: 'text/csv' });
+      // Set the input image visualization
+      setInputImageVisualisation(inputData); // Assuming setInputImageVisualisation takes input data as an argument
 
-        // Step 3: Create a URL for the Blob and set it for download
-        const url = window.URL.createObjectURL(blob);
-        setDownloadUrl(url); // Save the Blob URL for the download
-        setFileExist(true);
-      })
-      .catch((error) => {
-        console.error('There was an error!', error);
-      });
-    setLoading(false);
+      // Sending JSON data to backend via axios
+      setLoading(true);
+
+      const response = await axios.post(
+        'http://127.0.0.1:5000/generate-dataset-from-sample',
+        formattedData,
+      );
+      console.log(response.data.dataset); // Assuming response.data contains the JSON object
+
+      // Step 1: Convert response JSON to CSV
+      const outputJsonData = response.data.dataset;
+      setOutputJsonData(outputJsonData); // Set output data for further use
+
+      // Fetch the visualization for the output data
+      console.log('Fetching visualization for output data...');
+      const outputResponse = await fetchMetricVisualisationForData(outputJsonData);
+
+      // Set the output image visualization
+      setOutputImageVisualisation(outputResponse); // Assuming setOutputImageVisualisation takes output data as an argument
+
+      // Convert output JSON to CSV using PapaParse
+      const csv = Papa.unparse(outputJsonData);
+
+      // Step 2: Create a Blob from the CSV data
+      const blob = new Blob([csv], { type: 'text/csv' });
+
+      // Step 3: Create a URL for the Blob and set it for download
+      const url = window.URL.createObjectURL(blob);
+      setDownloadUrl(url); // Save the Blob URL for the download
+      setFileExist(true);
+      loaderHandler("image");
+    } catch (error) {
+      console.error('There was an error!', error);
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   // Function to download the CSV file
@@ -82,6 +175,7 @@ const UploadFile = () => {
     link.parentNode.removeChild(link); // Clean up after the download
   };
 
+  const [loadComponent, setLoadComponent] = useState('input-table');
   return (
     <div className="upload-csv-container">
       {/* File Uploader */}
@@ -180,44 +274,53 @@ const UploadFile = () => {
         {/* )} */}
       </div>
 
-      {loading && (
-        <div div className="loader_div">
-          <Loader></Loader>
+      <div className="image-container">
+        <div className="data-analysis-section">
+          {btnName.map((element) => {
+            return (
+              <button
+                className="btn-for-different-section"
+                onClick={() => {
+                  handleCsvParsing(element.dataSend, element.text);
+                }}
+              >
+                {element.name}
+              </button>
+            );
+          })}
+          {loading && (
+            <div div className="loader_div">
+              <Loader></Loader>
+            </div>
+          )}
+          {/* <button onClick={()=>{}}>{Chart}</button> */}
         </div>
-      )}
-
-      {/* Display table, if data exists */}
-      {tableRows.length > 0 && (
-        <div>
-          <h3>---Data You Uploaded---</h3>
-        </div>
-      )}
-      {tableRows.length > 0 && (
-        <div className="table_container">
-          <br />
-          <table>
-            <thead>
-              <tr>
-                {tableRows.map((rows, index) => {
-                  return <th key={index}>{rows}</th>;
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {values.map((value, index) => {
-                return (
-                  <tr key={index}>
-                    {value.map((val, i) => {
-                      return <td key={i}>{val}</td>;
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
-      <ImageDisplay />
+        {LoadThisComponent == 'table' && (
+          <TableForData tableRows={tableRows} values={values}></TableForData>
+        )}
+        {LoadThisComponent == 'image' && (
+          <div className="analysis-container-image">
+            <div className="input-graph-box">
+              {inputImageVisualisation &&
+                Object.keys(inputImageVisualisation).map((key) => (
+                  <>
+                    <p>{key}</p>
+                    <Base64Loader imageBase64={inputImageVisualisation[key]} />
+                  </>
+                ))}
+            </div>
+            <div className="output-graph-box">
+              {outputImageVisualisation &&
+                Object.keys(outputImageVisualisation).map((key) => (
+                  <>
+                    <p>{key}</p>
+                    <Base64Loader imageBase64={outputImageVisualisation[key]} />
+                  </>
+                ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -16,6 +16,8 @@
   --greenColor: #6aa84f;
   --lightBlueColor:#b2dded;
   --lightGreenColor: #84f057;
+  --marginNavBar:70px;
+  --purpleColor:#818CF8;
 }
 
 @layer components {

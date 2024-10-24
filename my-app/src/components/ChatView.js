@@ -10,6 +10,9 @@ import PromptPerfect from './PromptPerfect';
 import Dictaphone from './SpeechRecognition';
 import axios from 'axios';
 import ImagePreview from './ImagePreview';
+import useImageUpload from "../hooks/useImageUpload"
+import DataContext from '../context/dataContext';
+import Loading from "../components/LoadingSpinner/Loading";
 /**
  * A chat view component that displays a list of messages and a form for sending new messages.
  */
@@ -18,12 +21,13 @@ const ChatView = () => {
   const inputRef = useRef();
   const [formValue, setFormValue] = useState('');
   const [prompt, setPrompt] = useState('');
-  const [loading, setLoading] = useState(false);
   const [messages, addMessage] = useContext(ChatContext);
+  const {loadingChat,setLoadingChat,setSendImagePreview}=useContext(DataContext)
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPromptOpen, setModalPromptOpen] = useState(false);
   const [responseMessage,setResponseMessage]=useState("");
   const [file, setFile] = useState(null);
+  const { url, uploadImage } = useImageUpload();
   /**
    * Scrolls the chat area to the bottom.
    */
@@ -56,36 +60,46 @@ const ChatView = () => {
    */
   const sendMessage = async (e) => {
     e.preventDefault();
+    setSendImagePreview(false);
     if (!formValue) return;
     const cleanPrompt = formValue.trim();
 
     const newMsg = cleanPrompt;
-
+    let imageUrl="";
     setFormValue('');
     if(file){
+      console.log("Image is going to upload");
       // const response=await axios.post("url to upload image");
       // const imageurl=response?.image_url;
-      updateMessage(newMsg,false,"https://res.cloudinary.com/dztzcfuza/image/upload/v1709010005/EdTech/syudveg2oxgxdgotabc0.jpg")
+      const image=await uploadImage(file);
+      imageUrl=image;
+      console.log("Image Url",image);
+      updateMessage(newMsg,false,image);
+
     }
     else{
       updateMessage(newMsg, false);
     }
-    ChatWithBackend(newMsg);
+    ChatWithBackend(newMsg,imageUrl);
     console.log("************************************ now the button is clicked")
     const response = 'I am a bot. This feature will be coming soon.';
     // console.log(responseMessage.data);
     // updateMessage(responseMessage?.data, true);
   };
-  async function ChatWithBackend(data){
+  async function ChatWithBackend(data,imageUrl){
     try{
+        setLoadingChat(true);
         console.log("current data",data)
-        const response=await axios.post(API_URL+"/chat",{"message":data});
+        const response=await axios.post(API_URL+"/chat",{"message":data,"image":imageUrl});
         console.log("this is reposen from api",response?.data);
         // setResponseMessage(response?.data);
+        setLoadingChat(false);
         updateMessage(response?.data?.data, true);
+
     }
     catch(err){
-
+      console.log(err);
+      setLoadingChat(false);
     }
   }
   const sendMessageForMic = async (text) => {
@@ -174,12 +188,10 @@ const ChatView = () => {
     inputRef.current.style.height = 'auto';
     inputRef.current.style.height = inputRef.current.scrollHeight + 'px';
   }, [formValue]);
-
-
-  //  console.log("chat view",messages)
   return (
-    <div className=" w-full bg-white flex flex-col h-screen duration-300 overflow-hidden relative bg-">
-      <main className="chatview__chatarea gap-3">
+    <div className=" w-full bg-white  flex flex-col h-screen duration-300 overflow-hidden relative bg-">
+        {loadingChat&& (<Loading></Loading>)}
+      <main className="chatview__chatarea  gap-3">
         {messages.map((message, index) => (
          
           <ChatMessage key={index} message={{ ...message }} />
