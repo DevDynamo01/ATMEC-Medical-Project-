@@ -93,7 +93,7 @@ Make sure you have the following installed on your system:
 
 - cd backend<br>
 - pip install -r requirements.txt
-- creaet a .env file and add GOOGLE_API_KEY="..." # Gemini Api key from https://aistudio.google.com
+- create a .env file and add GOOGLE_API_KEY="..." # Gemini Api key from https://aistudio.google.com
 - python app.py
 
 ### For the react frontend
