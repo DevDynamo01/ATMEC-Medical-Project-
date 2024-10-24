@@ -16,14 +16,14 @@ def upload_to_gemini(image_data, mime_type=None, name=None, display_name=None):
     print(f"Uploaded image as: {file.uri}")
     return file
 
-# def upload_to_gemini(path, mime_type=None):
-#   """Uploads the given file to Gemini.
+def upload_url_to_gemini(path, mime_type=None):
+  """Uploads the given file to Gemini.
 
-#   See https://ai.google.dev/gemini-api/docs/prompting_with_media
-#   """
-#   file = genai.upload_file(path, mime_type=mime_type)
-#   print(f"Uploaded file '{file.display_name}' as: {file.uri}")
-#   return file
+  See https://ai.google.dev/gemini-api/docs/prompting_with_media
+  """
+  file = genai.upload_file(path, mime_type=mime_type)
+  print(f"Uploaded file '{file.display_name}' as: {file.uri}")
+  return file
 
 generation_config = {
   "temperature": 1,
@@ -56,7 +56,7 @@ model3 = genai.GenerativeModel(
   generation_config=generation_config,
 )
 
-def chat_with_gemini(input_text, history=[]):
+def chat_with_gemini(input_text, history):
   chat_session = model1.start_chat(history=history)
   response = chat_session.send_message(input_text)
   return response.text
@@ -77,6 +77,7 @@ def gen_ai_image(question, image, mime_type, prompts):
   files = [
     upload_to_gemini(image, mime_type),
   ]
+  print(files[0])
   prompts.append(f"input: {question}")
   prompts.append(files[0])
   prompts.append("output: ")

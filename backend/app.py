@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from routes.user_routes import user_routes
 from routes.ai_routes import ai_routes
+from routes.docter_routes import docter_routes
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ CORS(app)
 # Register blueprints
 app.register_blueprint(user_routes)
 app.register_blueprint(ai_routes)
+app.register_blueprint(docter_routes)
 
 
 

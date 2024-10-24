@@ -1,8 +1,12 @@
 from flask import Blueprint
-from controllers.user_controller import get_users, create_user
+from controllers.user_controller import get_all_users, get_user_by_id, add_user, signin
 
 user_routes = Blueprint('user', __name__)
 
 # Define routes
-user_routes.route('/users', methods=['GET'])(get_users)
-user_routes.route('/users', methods=['POST'])(create_user)
+user_routes.route('/users', methods=['GET'])(get_all_users)               
+user_routes.route('/user/<user_id>', methods=['GET'])(get_user_by_id) 
+
+user_routes.route('/user/register', methods=['POST'])(add_user)         # {email, name, password }
+user_routes.route('/user/signin', methods=['POST'])(signin)         # {email, password}
+

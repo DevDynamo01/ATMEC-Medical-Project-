@@ -4,6 +4,7 @@ from ai.gemini import chat_with_gemini, gen_ai_json, gen_ai_image
 from ai.prompts import question_generation_prompt, predict_disease_prompt, treatment_questions_prompt, treatment_plan_generation_prompt, dataset_generation_prompt
 from ai.prompts import disease_from_image_prompt, extract_from_image_prompt, drug_discovery_prompt
 import json
+from ai.gemini import upload_url_to_gemini
 
 def predict():
     return jsonify({'message': 'Prediction successful'}), 200   
@@ -16,8 +17,21 @@ def send_message():
 
 def chat_with_ai():
     message = request.json.get('message')
+    image_url = request.files.get('image')
+    history = []
 
-    result = chat_with_gemini(message, history=[])
+    # for history_item in history:
+    #     if history_item.image:
+    #         image_url = request.files.get('image')
+
+    if image_url:
+        print("image_url ", image_url)
+        mime_type = "image/" + str(image_url).split('.')[-1]
+        file = upload_url_to_gemini(image_url, mime_type)
+        print("file ", file)
+        history.append({"role": "user", "parts": file})
+
+    result = chat_with_gemini(message, history=history)
 
     return jsonify({"data":result}), 200
 
