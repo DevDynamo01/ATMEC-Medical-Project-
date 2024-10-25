@@ -27,6 +27,8 @@
     "bad-words": "^3.0.4",
     "cloudinary-react": "^1.8.1",
     "daisyui": "^2.51.6",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2",
     "moment": "^2.29.4",
     "openai": "^3.2.1",
     "papaparse": "^5.4.1",

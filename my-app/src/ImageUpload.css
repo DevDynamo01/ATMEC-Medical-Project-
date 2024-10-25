@@ -8,9 +8,19 @@
   min-height: 100vh;
 }
 
+.uploadImageContainer {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 h2 {
-  color: #333;
+  color: #283779;
   margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 input[type='file'] {
@@ -59,8 +69,7 @@ button:hover:not(:disabled) {
   }
 }
 
-pre {
-  background-color: #333;
+.pre {
   color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -69,4 +78,91 @@ pre {
   width: 80%;
   margin-top: 20px;
   text-align: left;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.showReport {
+  background-color: #3498db;
+  width: 80%;
+}
+
+.showReport h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* From Uiverse.io by andrew-demchenk0 */
+.button {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #17795e;
+  background-color: #209978;
+  overflow: hidden;
+}
+
+.button,
+.button__icon,
+.button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(22px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #17795e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+  fill: #fff;
+}
+
+.button:hover {
+  background: #17795e;
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button:active .button__icon {
+  background-color: #146c54;
+}
+
+.button:active {
+  border: 1px solid #146c54;
+}
+
+.downloadButtonCont {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
 }

@@ -19,7 +19,7 @@ import FollowUpQuestions from './components/FollowUpQuestions';
 import HomePage from './HomePage';
 import DynamicForm from './DynamicForm';
 import UploadFile from './components/UploadFile';
-import ImageUpload from './DiesesFormImage';
+import ImageUpload from './ImageUpload';
 import ReportUploader from './components/ReportUploader';
 import Druggeneration from './components/Druggeneration';
 
