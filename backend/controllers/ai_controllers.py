@@ -3,7 +3,7 @@ import requests
 from ai.ai_serveces import user_input
 from ai.gemini import chat_with_gemini, gen_ai_json, gen_ai_image
 from ai.prompts import question_generation_prompt, predict_disease_prompt, treatment_questions_prompt, treatment_plan_generation_prompt, dataset_generation_prompt
-from ai.prompts import disease_from_image_prompt, extract_from_image_prompt, drug_discovery_prompt
+from ai.prompts import disease_from_image_prompt, extract_from_image_prompt, drug_discovery_prompt, drug_from_disease_prompt
 import json
 from ai.gemini import upload_url_to_gemini, upload_to_gemini
 
@@ -130,5 +130,11 @@ def extract_med_from_image():
 def drug_from_smiles():
     smile = request.json.get('smiles')
     result = gen_ai_json(smile, prompts=drug_discovery_prompt)
+    result = json.loads(result)
+    return jsonify(result), 200
+
+def drug_from_disease():
+    disease = request.json.get('disease')
+    result = gen_ai_json(disease, prompts=drug_from_disease_prompt)
     result = json.loads(result)
     return jsonify(result), 200
