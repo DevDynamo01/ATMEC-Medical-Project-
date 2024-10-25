@@ -37,7 +37,10 @@ const IndividualDoctorProfile = ({ profile, rat }) => {
       <div className="lower">
         <div className="talknow">
           <div className="desc">{limitDescription(profile?.description)}</div>
-          <button onClick={() => navigate('/doctor-chat')} className="talknowbutton">
+          <button
+            onClick={() => navigate('/doctor-chat', { state: { profile } })}
+            className="talknowbutton"
+          >
             Talk Now @{profile?.consultation_fee}/hour
           </button>
         </div>
