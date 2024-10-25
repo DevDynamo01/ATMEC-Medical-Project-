@@ -21,20 +21,23 @@ const UploadFile = () => {
   const [outputJsonData, setOutputJsonData] = useState();
   const [outputImageVisualisation, setOutputImageVisualisation] = useState();
   const [inputImageVisualisation, setInputImageVisualisation] = useState();
-  const[LoadThisComponent,setLoadThisComponent]=useState("inputtable")
+  const [LoadThisComponent, setLoadThisComponent] = useState('inputtable');
 
-const loaderHandler=(text)=>{
-setLoadThisComponent(text);
-}
+  const loaderHandler = (text) => {
+    setLoadThisComponent(text);
+  };
 
   const btnName = [
     { name: 'Input table', path: '/input-table', dataSend: inputJsonData, text: 'table' },
     { name: 'Output table', path: '/output-table', dataSend: outputJsonData, text: 'table' },
-    { name: 'Chart', path: '/output-table', dataSend: outputJsonData,  text: 'image' },
+    { name: 'Chart', path: '/output-table', dataSend: outputJsonData, text: 'image' },
   ];
 
-  const handleCsvParsing = (jsonData,text) => {
-    if(text!=="table") {loaderHandler("image");return;}
+  const handleCsvParsing = (jsonData, text) => {
+    if (text !== 'table') {
+      loaderHandler('image');
+      return;
+    }
     console.log('data come-> ', jsonData);
 
     // Array to hold the ordered rows and values
@@ -157,7 +160,7 @@ setLoadThisComponent(text);
       const url = window.URL.createObjectURL(blob);
       setDownloadUrl(url); // Save the Blob URL for the download
       setFileExist(true);
-      loaderHandler("image");
+      loaderHandler('image');
     } catch (error) {
       console.error('There was an error!', error);
     } finally {
@@ -177,7 +180,7 @@ setLoadThisComponent(text);
 
   const [loadComponent, setLoadComponent] = useState('input-table');
   return (
-    <div className="upload-csv-container">
+    <div className="upload-csv-container component-margin">
       {/* File Uploader */}
       <div className="file-upload-container">
         <span className="simple-heading">Choose file to generate data</span>
