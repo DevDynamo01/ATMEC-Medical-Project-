@@ -36,7 +36,7 @@ const DrugInDisease = () => {
   };
 
   return (
-    <div className="drug-generation-container">
+    <div className="drug-generation-container component-margin">
       <div className="file-upload-container">
         <span className="simple-heading width500px">Enter the Disease</span>
         {/* Input field to capture data from the user */}
@@ -85,7 +85,7 @@ const DrugInDisease = () => {
           </div>
 
           <div className="big-container">
-            <div className="simple-heading">Novice Drugs </div>
+            <div className="simple-heading">Drugs that have Potential to Use</div>
             <div className=" known-treatment-drug-container novices-drug-container">
               {drugData.novice_drugs &&
                 drugData.novice_drugs.map((element) => {
@@ -93,7 +93,7 @@ const DrugInDisease = () => {
                     <>
                       <div className="drug-card-from-fever">
                         <div>Drug : {element.drug_candidate}</div>
-                        <div>Target : {element.targets}</div>
+                        <div>Potential Target : {element.targets}</div>
                         <div>Mechanism: {element.potential_mechanism}</div>
                       </div>
                     </>

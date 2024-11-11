@@ -18,6 +18,11 @@
   }
 }
 
+.chat-section-main {
+  height: calc(100vh - 70px);
+  overflow-y: scroll;
+}
+
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -45,7 +50,6 @@
   display: flex;
   /* border:1px solid rgb(145, 143, 143); */
   width: 100px;
-  height: 100px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -94,7 +98,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 3px;
 }
 
 .linkItem {
@@ -480,7 +484,7 @@
 }
 .simple-heading {
   font-size: 1.4rem;
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
   padding-right: 50px;
 }
 /* From Uiverse.io by Satwinder04 */
@@ -674,7 +678,8 @@ td {
 
 .drug-generation-container {
   width: 100%;
-  color: black;
+  color: #283779;
+  margin-top: 70px;
 }
 
 .result-container {

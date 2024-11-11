@@ -30,9 +30,9 @@
     "routeTo": "/doctors-profile"
   },
   {
-    "imageURL": "watch.png",
-    "buttonText": "Connect with IOT",
+    "imageURL": "drugdiscovery.png",
+    "buttonText": "Drug Discovery",
     "description": "The Connect with Doctor feature links users to healthcare professionals for personalized advice and treatment.",
-    "routeTo": "/chatbot"
+    "routeTo": "/druggenerationfromdisease"
   }
 ]

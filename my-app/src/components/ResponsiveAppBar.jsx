@@ -70,7 +70,10 @@ function ResponsiveAppBar() {
             <a href="/doctors-profile">Connect with Doctor</a>
           </li>
           <li className="linkItem">
-            <a>Connect with IOT</a>
+            <a href="/druggeneration">Drug Generation From Smiles</a>
+          </li>
+          <li className="linkItem">
+            <a href="/druggenerationfromdisease">Drug Generation From Disease</a>
           </li>
         </ul>
       </div>

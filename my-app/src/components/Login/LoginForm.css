@@ -1,0 +1,107 @@
+/* General Wrapper */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #6ab7ff; /* Light blue background */
+}
+
+#formContent {
+  background: #fff;
+  padding: 20px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Tabs Titles */
+h2.active {
+  font-weight: bold;
+  color: #333;
+}
+
+h2.inactive {
+  color: #888;
+  cursor: pointer;
+}
+
+.underlineHover {
+  position: relative;
+  color: #007bff;
+}
+
+.underlineHover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 0%;
+  background-color: #007bff;
+  transition: 0.3s;
+}
+
+.underlineHover:hover::after {
+  width: 100%;
+}
+
+.logo_img {
+  margin-top: -10px;
+  width: 150px;
+  height: 150px;
+  border: 1px;
+  border-radius: 100%;
+}
+/* Input fields */
+input[type='text'],
+input[type='password'] {
+  border: none;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  padding: 10px;
+  margin: 10px 0;
+  width: 85%;
+  font-size: 16px;
+  color: #333;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+  border-bottom: 2px solid #007bff;
+  outline: none;
+}
+
+/* Submit Button */
+input[type='submit'] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 85%;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+input[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+/* Forgot Password */
+#formFooter {
+  margin-top: 20px;
+}
+
+#formFooter a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#formFooter a:hover {
+  text-decoration: underline;
+}

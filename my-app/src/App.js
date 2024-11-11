@@ -27,6 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import DoctorsProfilePage from './DoctorsProfilePage';
 import DoctorChat from './DoctorChat';
 import DrugInDisease from './components/DrugInDisease';
+import LoginForm from './components/Login/LoginForm';
 function App() {
   const navigate = useNavigate();
   return (
@@ -52,11 +53,12 @@ function App() {
         <Route path="/uploadImage" element={<ImageUpload />}></Route>
         <Route path="/handle-uploader" element={<ReportUploader></ReportUploader>}></Route>
         <Route path="/generateDataFromSample" element={<UploadFile />}></Route>
-        <Route path="/druggeneration" element={<Druggeneration />}></Route>
         <Route path="/generateData" element={<DynamicForm />}></Route>
         <Route path="/doctors-profile" element={<DoctorsProfilePage />}></Route>
         <Route path="/doctor-chat" element={<DoctorChat />}></Route>
         <Route path="/druggenerationfromdisease" element={<DrugInDisease />}></Route>
+        <Route path="/druggeneration" element={<Druggeneration />}></Route>
+        <Route path="/login" element={<LoginForm />}></Route>
       </Routes>
     </div>
   );
