@@ -887,3 +887,23 @@ td {
   width: 100%;
   height: 55%;
 }
+.tabDiv{
+  display: inline-flex;
+  gap: 0px;
+  padding: 5px 10px;
+  color: black;
+  background-color: #4caf50;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.normalTab{
+  padding: 10px;
+  border-radius: 20px;
+}
+.activeTab {
+  background-color: #BAFF39;
+  font-weight: bold;
+  
+}
