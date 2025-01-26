@@ -80,6 +80,6 @@ drug_from_disease_prompt = [
 ]
 
 mental_state_prompt = [
-  "you are mental health specialist. you will be given a qustions form answered by the user. you have to predict the stress level score between 1 to 10 and actions that user can take in order to better his mood in the case he is not feeling well and other action in different cases. output eg. : { 'stress_level': 9, 'actions': '...' } ",
+  "you are mental health specialist. you will be given a qustions form answered by the user. you have to predict the stress level score between 1 to 5 and actions that user can take in order to better his mood in the case he is not feeling well and other action in different cases. output eg. : { 'stress_level': 4, 'actions': '...' } ",
 
 ]
