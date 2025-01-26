@@ -27,7 +27,10 @@ import { useNavigate } from 'react-router-dom';
 import DoctorsProfilePage from './DoctorsProfilePage';
 import DoctorChat from './DoctorChat';
 import DrugInDisease from './components/DrugInDisease';
-import ModelTrainerWithValidation from './components/Federated/ModelTrainerWithValidation';
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
+import ProtectedRoute from "./components/Auth/PrivateRoute";
+
 function App() {
   const navigate = useNavigate();
   return (
@@ -40,25 +43,27 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/chatbot"
-          element={
-            <ChatContextProvider>
-              <div className="flex transition duration-500 ease-in-out mt-[var(--marginNavBar)]">
-                <SideBar />
-                <ChatView />
-              </div>
-            </ChatContextProvider>
+          element={<ProtectedRoute>
+              <ChatContextProvider>
+                <div className="flex transition duration-500 ease-in-out mt-[var(--marginNavBar)]">
+                  <SideBar />
+                  <ChatView />
+                </div>
+              </ChatContextProvider>
+            </ProtectedRoute>
           }
         ></Route>
-        <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
-        <Route path="/uploadImage" element={<ImageUpload />}></Route>
-        <Route path="/handle-uploader" element={<ReportUploader></ReportUploader>}></Route>
-        <Route path="/generateDataFromSample" element={<UploadFile />}></Route>
-        <Route path="/druggeneration" element={<Druggeneration />}></Route>
-        <Route path="/generateData" element={<DynamicForm />}></Route>
-        <Route path="/doctors-profile" element={<DoctorsProfilePage />}></Route>
-        <Route path="/doctor-chat" element={<DoctorChat />}></Route>
-        <Route path="/druggenerationfromdisease" element={<DrugInDisease />}></Route>
-        <Route path="/federated" element={<ModelTrainerWithValidation />}></Route>
+        <Route path="/diagonsis" element={<ProtectedRoute><FollowUpQuestions></FollowUpQuestions></ProtectedRoute>}></Route>
+        <Route path="/uploadImage" element={<ProtectedRoute><ImageUpload /></ProtectedRoute>}></Route>
+        <Route path="/handle-uploader" element={<ProtectedRoute><ReportUploader></ReportUploader></ProtectedRoute>}></Route>
+        <Route path="/generateDataFromSample" element={<ProtectedRoute><UploadFile /></ProtectedRoute>}></Route>
+        <Route path="/generateData" element={<ProtectedRoute><DynamicForm /></ProtectedRoute>}></Route>
+        <Route path="/doctors-profile" element={<ProtectedRoute><DoctorsProfilePage /></ProtectedRoute>}></Route>
+        <Route path="/doctor-chat" element={<ProtectedRoute><DoctorChat /></ProtectedRoute>}></Route>
+        <Route path="/druggenerationfromdisease" element={<ProtectedRoute><DrugInDisease /></ProtectedRoute>}></Route>
+        <Route path="/druggeneration" element={<ProtectedRoute><Druggeneration /></ProtectedRoute>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
       </Routes>
     </div>
   );

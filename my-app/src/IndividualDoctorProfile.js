@@ -4,13 +4,8 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import { useNavigate } from 'react-router-dom';
 
-const IndividualDoctorProfile = ({ profile, rat }) => {
-  const [rating, setRating] = useState(rat);
+const IndividualDoctorProfile = ({ profile }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    setRating(rat);
-  }, [rat]);
-
   const limitDescription = (description) => {
     if (!description) return '';
     const words = description.split(' ');
@@ -27,17 +22,24 @@ const IndividualDoctorProfile = ({ profile, rat }) => {
           <div className="name">{profile?.name}</div>
           <div className="field">{profile?.field}</div>
           {/* */}
-          <div className="fee">Consultation Fee: ${profile?.consultation_fee}</div>
-          <div className="mobema">
-            <div>Mobile: {profile?.mobile}</div>
-            <div>Email: {profile?.email}</div>
-          </div>
+          {profile?.consultation_fee && (
+            <div className="fee">Consultation Fee: ${profile?.consultation_fee}</div>
+          )}
+          {profile?.mobile && (
+            <div className="mobema">
+              <div>Mobile: {profile?.mobile}</div>
+              <div>Email: {profile?.email}</div>
+            </div>
+          )}
         </div>
       </div>
       <div className="lower">
         <div className="talknow">
           <div className="desc">{limitDescription(profile?.description)}</div>
-          <button onClick={() => navigate('/doctor-chat')} className="talknowbutton">
+          <button
+            onClick={() => navigate('/doctor-chat', { state: { profile } })}
+            className="talknowbutton"
+          >
             Talk Now @{profile?.consultation_fee}/hour
           </button>
         </div>

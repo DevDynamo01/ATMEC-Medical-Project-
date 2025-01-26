@@ -14,47 +14,53 @@ import TypeWriter from './TypeWriter';
  * @param {Object} props - The properties for the component.
  */
 const ChatMessage = (props) => {
-  const { id, createdAt, text,imageLink, ai = false } = props.message;
-// console.log("this is=> ",text)
+  const { id, createdAt, text, imageLink, ai = false } = props.message;
+  // console.log("this is=> ",text)
   return (
-
-    <div key={id} className={`${ai ? 'self-start': 'self-end flex-row-reverse' } max-w-[75%] z-20 flex gap-4 p-2`}>
-        <div className={`message__pic`}>
-          <div className="avatar">
-            <div className="w-8 border rounded-full">
-              {ai ? <img width="30" src={logo} alt="Logo" /> : <img src={person} alt="profile pic" />}
-            </div>
+    <div
+      key={id}
+      className={`${
+        ai ? 'self-start' : 'self-end flex-row-reverse'
+      } max-w-[75%] z-20 flex gap-2 p-2`}
+    >
+      <div className={`message__pic`}>
+        <div className="avatar">
+          <div className="w-8 border rounded-full">
+            {ai ? <img width="30" src={logo} alt="Logo" /> : <img src={person} alt="profile pic" />}
           </div>
         </div>
-          <div className={`${ai ? 'bg-[--greenColor]': 'bg-[--blueColor]' } relative message__wrapper p-2 px-7 rounded-xl`}>
-            <div className={`w-6 h-6 rotate-45 absolute -z-10 top-4 ${ai ? '-left-3 bg-[--greenColor]': '-right-3  bg-[--blueColor]' }`}></div>
-            <ReactMarkdown
-              className={`message__markdown  text-left text-black`}
-              remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
-              components={{
-                code({ node, inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || 'language-js');
-                  return (
-                    <code className={className} {...props}>
-                      {children}{' '}
-                    </code>
-                  );
-                },
-              }}
-            >
-              {text}
-            </ReactMarkdown>
-            {/* {ai ? (<TypeWriter text={text} speed={20}></TypeWriter>): text} */}
-            {imageLink &&(
-               <div className="w-[300px] h-[250px] overflow-hidden rounded-lg mt-2 ">
-                {
-                  <img className="w-full h-full" src={imageLink} alt="preview" />
-                }
-              </div> 
-            )}
-            <div className="text-left message__createdAt text-black self-end">{moment(createdAt).calendar()}
-               <TextToSpeech content={text}></TextToSpeech>
-            </div>
+      </div>
+      <div
+        className={`${
+          ai ? 'bg-[--greenColor]' : 'bg-[--blueColor]'
+        } relative message__wrapper p-3  rounded-xl`}
+      >
+        <ReactMarkdown
+          className={`message__markdown  text-left text-black`}
+          remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || 'language-js');
+              return (
+                <code className={className} {...props}>
+                  {children}{' '}
+                </code>
+              );
+            },
+          }}
+        >
+          {text}
+        </ReactMarkdown>
+        {/* {ai ? (<TypeWriter text={text} speed={20}></TypeWriter>): text} */}
+        {imageLink && (
+          <div className="w-[250px] h-[200px] overflow-hidden rounded-lg mt-1 ">
+            {<img className="w-full h-full" src={imageLink} alt="preview" />}
+          </div>
+        )}
+        <div className="text-left message__createdAt text-black self-end">
+          {moment(createdAt).calendar()}
+          <TextToSpeech content={text}></TextToSpeech>
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
-import { CiMicrophoneOn, CiMicrophoneOff } from "react-icons/ci";
-import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import React, { useEffect, useState } from 'react';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { CiMicrophoneOn, CiMicrophoneOff } from 'react-icons/ci';
+import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-const Dictaphone = ({content}) => {
+const Dictaphone = ({ content }) => {
   // console.log("this is the content",content);
   const [recordingText, setRecordingText] = useState('');
   const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } =
@@ -27,20 +25,18 @@ const Dictaphone = ({content}) => {
   // const [toggle,setToggle]=useState(false)
 
   useEffect(() => {
-if(listening==false){
-  handleTheCall();
-}
+    if (listening == false) {
+      handleTheCall();
+    }
   }, [listening]);
 
-const handleTheCall=()=> {
+  const handleTheCall = () => {
     console.log('we get recording');
-    console.log("recording text :", recordingText);
+    console.log('recording text :', recordingText);
     if (recordingText) {
       content(recordingText);
     }
-}
-
-
+  };
 
   return (
     <div>
@@ -49,12 +45,11 @@ const handleTheCall=()=> {
         {/* Toggle between microphone icons based on the 'listening' state */}
         {listening ? (
           <CiMicrophoneOff
-            size={40}
+            size={30}
             onClick={() => {
               // handleTheCall(recordingText);
               // console.log("hbfsnm")
               SpeechRecognition.stopListening();
-
             }}
             style={{
               cursor: 'pointer',
@@ -65,8 +60,8 @@ const handleTheCall=()=> {
           />
         ) : (
           <CiMicrophoneOn
-            size={40}
-            onClick={()=>{
+            size={30}
+            onClick={() => {
               // setRecordingText("");
               resetTranscript();
               SpeechRecognition.startListening();

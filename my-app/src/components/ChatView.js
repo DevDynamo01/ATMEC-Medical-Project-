@@ -10,9 +10,9 @@ import PromptPerfect from './PromptPerfect';
 import Dictaphone from './SpeechRecognition';
 import axios from 'axios';
 import ImagePreview from './ImagePreview';
-import useImageUpload from "../hooks/useImageUpload"
+import useImageUpload from '../hooks/useImageUpload';
 import DataContext from '../context/dataContext';
-import Loading from "../components/LoadingSpinner/Loading";
+import Loading from '../components/LoadingSpinner/Loading';
 /**
  * A chat view component that displays a list of messages and a form for sending new messages.
  */
@@ -22,11 +22,10 @@ const ChatView = () => {
   const [formValue, setFormValue] = useState('');
   const [prompt, setPrompt] = useState('');
   const [messages, addMessage] = useContext(ChatContext);
-  const {loadingChat,setLoadingChat,setSendImagePreview}=useContext(DataContext)
+  const { loadingChat, setLoadingChat, file, setFile, setFileDataURL } = useContext(DataContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPromptOpen, setModalPromptOpen] = useState(false);
-  const [responseMessage,setResponseMessage]=useState("");
-  const [file, setFile] = useState(null);
+  const [responseMessage, setResponseMessage] = useState('');
   const { url, uploadImage } = useImageUpload();
   /**
    * Scrolls the chat area to the bottom.
@@ -41,16 +40,16 @@ const ChatView = () => {
    * @param {string} newValue - The text of the new message.
    * @param {boolean} [ai=false] - Whether the message was sent by an AI or the user.
    */
-  const updateMessage = (newValue, ai = false,imageLink="") => {
+  const updateMessage = (newValue, ai = false, imageLink = '') => {
     const id = Date.now() + Math.floor(Math.random() * 1000000);
     const newMsg = {
       id: id,
       createdAt: Date.now(),
       text: newValue,
       ai: ai,
-      imageLink:imageLink
+      imageLink: imageLink,
     };
-        addMessage(newMsg);
+    addMessage(newMsg);
   };
 
   /**
@@ -60,55 +59,52 @@ const ChatView = () => {
    */
   const sendMessage = async (e) => {
     e.preventDefault();
-    setSendImagePreview(false);
     if (!formValue) return;
     const cleanPrompt = formValue.trim();
 
     const newMsg = cleanPrompt;
-    let imageUrl="";
+    let imageUrl = '';
     setFormValue('');
-    if(file){
-      console.log("Image is going to upload");
+    if (file) {
+      console.log('Image is going to upload');
       // const response=await axios.post("url to upload image");
       // const imageurl=response?.image_url;
-      const image=await uploadImage(file);
-      imageUrl=image;
-      console.log("Image Url",image);
-      updateMessage(newMsg,false,image);
-
-    }
-    else{
+      const image = await uploadImage(file);
+      imageUrl = image;
+      console.log('Image Url', image);
+      updateMessage(newMsg, false, image);
+    } else {
       updateMessage(newMsg, false);
     }
-    ChatWithBackend(newMsg,imageUrl);
-    console.log("************************************ now the button is clicked")
+    setFile(null);
+    setFileDataURL(null);
+    ChatWithBackend(newMsg, imageUrl);
+    console.log('************************************ now the button is clicked');
     const response = 'I am a bot. This feature will be coming soon.';
     // console.log(responseMessage.data);
     // updateMessage(responseMessage?.data, true);
   };
-  async function ChatWithBackend(data,imageUrl){
-    try{
-        setLoadingChat(true);
-        console.log("current data",data)
-        const response=await axios.post(API_URL+"/chat",{"message":data,"image":imageUrl});
-        console.log("this is reposen from api",response?.data);
-        // setResponseMessage(response?.data);
-        setLoadingChat(false);
-        updateMessage(response?.data?.data, true);
-
-    }
-    catch(err){
+  async function ChatWithBackend(data, imageUrl) {
+    try {
+      setLoadingChat(true);
+      console.log('current data', data);
+      const response = await axios.post(API_URL + '/chat', { message: data, image: imageUrl });
+      console.log('this is reposen from api', response?.data);
+      // setResponseMessage(response?.data);
+      setLoadingChat(false);
+      updateMessage(response?.data?.data, true);
+    } catch (err) {
       console.log(err);
       setLoadingChat(false);
     }
   }
   const sendMessageForMic = async (text) => {
-    console.log("send msg funtion called for miccalled for ",text)
-    const cleanPrompt = text
+    console.log('send msg funtion called for miccalled for ', text);
+    const cleanPrompt = text;
     const newMsg = cleanPrompt;
     updateMessage(newMsg, false);
     ChatWithBackend(newMsg);
-    // console.log("************************************")
+    // console.log("")
     // const response = 'I am a bot. This feature will be coming soon.';
     // console.log(responseMessage);
     // updateMessage(responseMessage, true);
@@ -122,16 +118,16 @@ const ChatView = () => {
     }
   };
 
-    const handleChangeforMic = (text) => {
-      console.log("text",text)
-      setFormValue(text);
+  const handleChangeforMic = (text) => {
+    console.log('text', text);
+    setFormValue(text);
   };
   const handleChange = (event) => {
     setFormValue(event.target.value);
   };
 
   const updatePrompt = async () => {
-    console.log("-----------------------------------");
+    console.log('-----------------------------------');
     // const api = 'https://us-central1-prompt-ops.cloudfunctions.net/optimize';
     // const secretKey = process.env.REACT_APP_API_KEY;
 
@@ -139,7 +135,7 @@ const ChatView = () => {
     //   setLoading(true);
     //   const response = await fetch(api, {
     //     headers: {
-    //       'x-api-key': `token ${secretKey}`,
+    //       'x-api-key': token ${secretKey},
     //       'content-type': 'application/json',
     //     },
     //     body: JSON.stringify({
@@ -165,7 +161,7 @@ const ChatView = () => {
   };
 
   const handleUseClicked = () => {
-    console.log("me clicked")
+    console.log('me clicked');
     setFormValue(prompt);
     setModalPromptOpen(false);
   };
@@ -189,11 +185,10 @@ const ChatView = () => {
     inputRef.current.style.height = inputRef.current.scrollHeight + 'px';
   }, [formValue]);
   return (
-    <div className=" w-full bg-white  flex flex-col h-screen duration-300 overflow-hidden relative bg-">
-        {loadingChat&& (<Loading></Loading>)}
-      <main className="chatview__chatarea  gap-3">
+    <div className=" w-full chat-section-main  bg-white  flex flex-col  duration-300 relative">
+      {loadingChat && <Loading></Loading>}
+      <main className="chatview__chatarea gap-3">
         {messages.map((message, index) => (
-         
           <ChatMessage key={index} message={{ ...message }} />
         ))}
 
@@ -209,15 +204,14 @@ const ChatView = () => {
             onKeyDown={handleKeyDown}
             onChange={handleChange}
           />
-          <div className="flex items-center">
+          <div className="flex gap-2 items-center">
             <button type="submit" className="chatview__btn-send my-auto" disabled={!formValue}>
               <MdSend size={30} />
             </button>
             <Dictaphone content={sendMessageForMic} />
-            <ImagePreview file={file} setFile={setFile}></ImagePreview>
+            <ImagePreview></ImagePreview>
           </div>
         </div>
-
       </form>
       {/* <Modal title="Prompt Perfect" modalOpen={modalPromptOpen} setModalOpen={setModalPromptOpen}>
         <PromptPerfect

@@ -31,9 +31,9 @@ def get_user_by_id(user_id):
 # Add user with password hashing
 def add_user():
     user = request.json
-    
-    existing_user = users_collection.find_one({"email": user.get("email")}) 
-    
+    # user = jsonify(user)
+    # print(type(user), user)
+    existing_user = users_collection.find_one({"email": user['email']})
     if existing_user:
         return jsonify({"error": "User already exists"}), 400
     
@@ -51,13 +51,13 @@ def signin():
     data = request.json
     email = data.get("email")
     password = data.get("password")
-    
     # Retrieve user by email
     user = users_collection.find_one({"email": email})
     
     if user and bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
         user['_id'] = str(user['_id']) 
         del user['password'] 
+        del user['confirmPassword']
         return jsonify(user), 200
     else:
         return jsonify({"error": "Invalid email or password"}), 401
