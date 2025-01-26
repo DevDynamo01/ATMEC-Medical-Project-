@@ -27,6 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import DoctorsProfilePage from './DoctorsProfilePage';
 import DoctorChat from './DoctorChat';
 import DrugInDisease from './components/DrugInDisease';
+import ModelTrainerWithValidation from './components/Federated/ModelTrainerWithValidation';
 function App() {
   const navigate = useNavigate();
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/doctors-profile" element={<DoctorsProfilePage />}></Route>
         <Route path="/doctor-chat" element={<DoctorChat />}></Route>
         <Route path="/druggenerationfromdisease" element={<DrugInDisease />}></Route>
+        <Route path="/federated" element={<ModelTrainerWithValidation />}></Route>
       </Routes>
     </div>
   );
