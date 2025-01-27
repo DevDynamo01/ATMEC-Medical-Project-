@@ -1,7 +1,7 @@
 from flask import Blueprint
 from controllers.ai_controllers import predict_disease, send_message, chat_with_ai, generate_follow_up_questions, questions_for_treatement, \
     generate_treatement_plan, generate_dataset_from_sample, generate_dataset_from_description, chat_with_image, \
-    predict_disease_from_image, extract_med_from_image, drug_from_smiles, drug_from_disease
+    predict_disease_from_image, extract_med_from_image, drug_from_smiles, drug_from_disease, mental_prediction
 
 from controllers.metrics import get_matrix_from_file , get_metrics_from_json
 
@@ -24,10 +24,22 @@ ai_routes.route('/questions-for-treatment', methods=['POST'])(questions_for_trea
 
 ai_routes.route('/treatment-plan', methods=['POST'])(generate_treatement_plan)
 
+
+
+
+
+
+
+
 ## [ Generating datasets ]
 ai_routes.route('/generate-dataset-from-sample', methods=['POST'])(generate_dataset_from_sample)  #  {size , sample}
 
 ai_routes.route('/generate-dataset-from-description', methods=['POST'])(generate_dataset_from_description)  # {size, fields, descriptions}
+
+
+
+
+
 
 ## [ Queriying from image ]
 ai_routes.route('/chat-with-image', methods=['POST'])(chat_with_image)
@@ -45,3 +57,5 @@ ai_routes.route('/validate-reaction', methods=['POST'])(dock_smile)  # {smiles :
 ai_routes.route('/metric-from-file', methods=['POST'])(get_matrix_from_file)  # { files[file] }
 
 ai_routes.route('/metric-from-json', methods=['POST'])(get_metrics_from_json)  # { dataset : [ { ... }, { ... } , ... ] }
+
+ai_routes.route('/stress-prediction', methods=['POST'])(mental_prediction) 

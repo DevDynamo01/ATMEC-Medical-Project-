@@ -9,4 +9,3 @@ user_routes.route('/user/<user_id>', methods=['GET'])(get_user_by_id)
 
 user_routes.route('/user/register', methods=['POST'])(add_user)         # {email, name, password }
 user_routes.route('/user/signin', methods=['POST'])(signin)         # {email, password}
-

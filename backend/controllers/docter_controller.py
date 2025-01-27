@@ -29,6 +29,17 @@ def add_docter():
         return jsonify(docter), 201
     except DuplicateKeyError:
         return jsonify({"error": "Docter already exists"}), 400
+    
+def update_docter(id):
+    docter = request.json
+    try:
+        result = docter_db.update_one({"_id": ObjectId(id)}, {"$set": docter})
+        if result.modified_count > 0:
+            return jsonify({"message": "Docter updated successfully"}), 200
+        else:
+            return jsonify({"error": "Docter not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 def signin():
     data = request.json
@@ -70,3 +81,4 @@ def get_all_docters():
         if 'password' in docter:
             del docter['password']  # Optionally remove passwords
     return jsonify(docters), 200
+
