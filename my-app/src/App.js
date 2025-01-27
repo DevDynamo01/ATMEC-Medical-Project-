@@ -27,6 +27,14 @@ import { useNavigate } from 'react-router-dom';
 import DoctorsProfilePage from './DoctorsProfilePage';
 import DoctorChat from './DoctorChat';
 import DrugInDisease from './components/DrugInDisease';
+import LoginForm from './components/Login/LoginForm';
+import Game from './components/Game/Game';
+import StudentQusetions from './components/Game/StudentQusetions'
+import ParentQuestions from './components/Game/parentQuestions';
+import PartnerQuestions from './components/Game/partnerQuestions';
+import CorporateQuestions from './components/Game/corporateQuestions';
+import EmojiMoodAnalyzer from './components/Game/emojiQuestions';
+
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import ProtectedRoute from "./components/Auth/PrivateRoute";
@@ -53,6 +61,23 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
+        <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
+        <Route path="/uploadImage" element={<ImageUpload />}></Route>
+        <Route path="/handle-uploader" element={<ReportUploader></ReportUploader>}></Route>
+        <Route path="/generateDataFromSample" element={<UploadFile />}></Route>
+        <Route path="/generateData" element={<DynamicForm />}></Route>
+        <Route path="/doctors-profile" element={<DoctorsProfilePage />}></Route>
+        <Route path="/doctor-chat" element={<DoctorChat />}></Route>
+        <Route path="/druggenerationfromdisease" element={<DrugInDisease />}></Route>
+        <Route path="/druggeneration" element={<Druggeneration />}></Route>
+        <Route path="/login" element={<LoginForm />}></Route>
+        <Route path="/game" element={<Game/>}></Route>
+        <Route path="/student-mood" element={<StudentQusetions/>}></Route>
+        <Route path="/emoji-mood" element={<EmojiMoodAnalyzer/>}></Route>
+        <Route path="/parent-mood" element={<ParentQuestions/>}></Route>
+        <Route path="/partner-mood" element={<PartnerQuestions/>}></Route>
+        <Route path="/corporate-mood" element={<CorporateQuestions/>}></Route>
+        <Route path="/basic-mood" element={<StudentQusetions/>}></Route>
         <Route path="/diagonsis" element={<ProtectedRoute><FollowUpQuestions></FollowUpQuestions></ProtectedRoute>}></Route>
         <Route path="/uploadImage" element={<ProtectedRoute><ImageUpload /></ProtectedRoute>}></Route>
         <Route path="/handle-uploader" element={<ProtectedRoute><ReportUploader></ReportUploader></ProtectedRoute>}></Route>
