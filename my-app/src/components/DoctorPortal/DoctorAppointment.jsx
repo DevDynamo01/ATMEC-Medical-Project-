@@ -1,21 +1,43 @@
-import { useState ,useEffect} from "react";
-function DoctorAppointment(){
-    const [appointments, setAppointments] = useState([
-        { id:"1",name: "Liam James DOCTOR", email: "liamjames@example.com", date: "2022-01-01", time: "10:00 AM" },
-        { id:"2", name: "Olivia Emma DOCTOR", email: "oliviaemma@example.com", date: "2022-01-01", time: "11:00 AM" },
-        { id:"3", name: "William Benjamin DOCTOR", email: "william.benjamin@example.com", date: "2022-01-02", time: "09:00 AM" },
-        { id:"4", name: "Henry Theodore DOCTOR", email: "henrytheodore@example.com", date: "2022-01-02", time: "01:00 PM" },
-        { id:"5", name: "Amelia Elijah DOCTOR", email: "amelia.elijah@example.com", date: "2022-01-03", time: "03:00 PM" }
-      ]);
+import { useState ,useEffect,useContext} from "react";
+import DataContext from "../../context/dataContext";
+import axios from 'axios';
+import AppointmentScheduler from "./AppointmentScheduler";
+import {toast} from 'react-hot-toast'
+function UserAppointment(){
+  const {user}=useContext(DataContext);
+  const [selectAppointment,setSelectAppointment]=useState();
+    const [appointments, setAppointments] = useState([]);
+    const [displayoverlay,setDisplayOverlay]=useState(false);
+      const getAppointment=async()=>{
+        try{
+          const url="http://localhost:5000"
+          const response=await axios.post(`${url}/appointments/docter`,{docter_id:user?._id});
+          // console.log(response);
+          setAppointments(response?.data);
+        }catch(err){
+          console.log(err);
+        }
+      }
+      const deleteAppointment=async(id)=>{
+        try{
+        const url="http://localhost:5000"
+        const response = await axios.delete(`${url}/appointment/${id}`);
+        toast.success("Appointment deleted successfully!!")
+        getAppointment();
+        }catch(err){
+          toast.error("Error in deleting Appointment!!")
+          console.log(err);
+        }
+      }
       useEffect(() => {
-        // // Fetch appointments from the mock API
-        // fetch("http://localhost:5000/appointments")
-        //   .then((response) => response.json())
-        //   .then((data) => setAppointments(data));
+        getAppointment();
       }, []);
     return(
-        <div>
-            <h2 className="text-2xl font-bold mb-4">Your Appointments</h2>
+        <div className="relative">
+          { displayoverlay &&(
+          <AppointmentScheduler appointment={selectAppointment} getAppointment={getAppointment} setDisplayOverlay={setDisplayOverlay}></AppointmentScheduler>
+          )} 
+          <h2 className="text-2xl font-bold mb-4">Your Appointments</h2>
             <table className="w-full  border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-white text-black">
@@ -29,13 +51,13 @@ function DoctorAppointment(){
               <tbody>
                 {appointments.map((appointment, index) => (
                   <tr key={index}>
-                    <td className="border border-gray-300 p-2 text-black">{appointment.name}</td>
-                    <td className="border border-gray-300 p-2 text-black">{appointment.email}</td>
+                    <td className="border border-gray-300 p-2 text-black">{appointment.user_name}</td>
+                    <td className="border border-gray-300 p-2 text-black">{appointment.user_email}</td>
                     <td className="border border-gray-300 p-2 text-black">{appointment.date}</td>
                     <td className="border border-gray-300 p-2 text-black">{appointment.time}</td>
                     <td className="border border-gray-300 p-2 text-black">
-                      <button className="bg-blue-500 text-white px-2 py-1 rounded mr-2">Accept</button>
-                      <button className="bg-red-500 text-white px-2 py-1 rounded">Reject</button>
+                      <button className="bg-blue-500 text-white px-2 py-1 rounded mr-2" onClick={()=>{setSelectAppointment(appointment);setDisplayOverlay(true)}}>Accept</button>
+                      <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={()=>deleteAppointment(appointment?._id)}>Reject</button>
                     </td>
                   </tr>
                 ))}
@@ -44,4 +66,4 @@ function DoctorAppointment(){
         </div>
     )
 }
-export default DoctorAppointment;
+export default UserAppointment;

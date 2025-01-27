@@ -5,7 +5,7 @@ import '@smastrom/react-rating/style.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast';
-const IndividualDoctorProfile = ({ profile ,user_id}) => {
+const IndividualDoctorProfile = ({ profile ,user,setLoading}) => {
   const navigate = useNavigate();
   const limitDescription = (description) => {
     if (!description) return '';
@@ -16,17 +16,28 @@ const IndividualDoctorProfile = ({ profile ,user_id}) => {
   async function bookAppointment(){
       try{
           // console.log(profile?._id,user_id);
+          setLoading(true);
           const url="http://127.0.0.1:5000";
-          // const response=axios.post(`${url}`,{"user_id":user_id,"docter_id":profile?.Id});
+          const response=await axios.post(`${url}/appointment`,
+            {"user_id":user?._id,
+              "docter_id":profile?._id,
+              "user_name":user?.firstName,
+              "user_email":user?.email,
+              "doctor_name":profile?.name,
+              "doctor_email":profile?.email
+            });
+          console.log(response);
           toast.success("Appointment created!! check status on Dashboard");
+          setLoading(false);
       }
       catch(err){
+        setLoading(false);
         console.log(err);
       }
   }
 
   return (
-    <div className="individual-doctor-profile">
+    <div className="individual-doctor-profile relative">
       <div className="upper">
         <div className="imageContainer">
           <img src={profile?.image_url} alt={profile?.name}></img>

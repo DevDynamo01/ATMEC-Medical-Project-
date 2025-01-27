@@ -6,11 +6,13 @@ import IndividualDoctorProfile from './IndividualDoctorProfile';
 import { useCookies } from 'react-cookie';
 import DataContext from './context/dataContext';
 import axios from 'axios';
+import Loader from './components/Loader';
 const DoctorsProfilePage = () => {
     const url="http://127.0.0.1:5000";
     const {user}=useContext(DataContext);
     const [doctors,setDoctors]=useState([]);
     const [specialization,setSpecialization]=useState("");
+    const [loading,setLoading]=useState(false);
     const getAvailableDoctors = async (specialization) => {
       try {
         const response = await axios.get(`${url}/docters/get-by-specialization`, {
@@ -29,12 +31,13 @@ const DoctorsProfilePage = () => {
     },[specialization]);
   return (
     <div className="doctor-profile-page">
-      <div className="container">
+      <div className="container relative">
         <h4>Connect With Our Doctors</h4>
+        {loading && (<Loader></Loader>)}
         <div className="containerofIndividualDoctorProfile">
             {doctors && doctors.length>0 &&(
               doctors.map((profile, index) => (
-                <IndividualDoctorProfile key={index} profile={profile} user_id={user?._id}/>
+                <IndividualDoctorProfile key={index} profile={profile} user={user} setLoading={setLoading}/>
               ))
             )}
         </div>

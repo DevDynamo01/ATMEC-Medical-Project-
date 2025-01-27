@@ -63,7 +63,7 @@ def chat_with_gemini(input_text, history):
 
 
 model2 = genai.GenerativeModel(
-  model_name="gemini-1.5-flash-002",
+  model_name="gemini-1.5-flash-8b",
   generation_config=generation_config_json,
 )
 
@@ -82,4 +82,15 @@ def gen_ai_image(question, image, mime_type, prompts):
   prompts.append(files[0])
   prompts.append("output: ")
   response = model3.generate_content(prompts)
+  return response.text
+
+def gen_ai_image_json(question, image, mime_type, prompts):
+  files = [
+    upload_to_gemini(image, mime_type),
+  ]
+  print(files[0])
+  prompts.append(f"input: {question}")
+  prompts.append(files[0])
+  prompts.append("output: ")
+  response = model2.generate_content(prompts)
   return response.text

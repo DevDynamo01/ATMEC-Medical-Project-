@@ -210,6 +210,9 @@
   height: 1em;
   border-radius: 50%;
   position: absolute;
+  left:50%;
+  top:20px;
+  /* transform: translate(-50%, -50%); */
   text-indent: -9999em;
   animation: mulShdSpin 1.1s infinite ease;
   transform: translateZ(0);
