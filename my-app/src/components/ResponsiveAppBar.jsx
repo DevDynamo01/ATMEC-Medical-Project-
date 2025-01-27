@@ -78,7 +78,7 @@ function ResponsiveAppBar() {
             </li>
           </ul>
         </div>
-      {user ?( <ProfileOverlay></ProfileOverlay>):(<div className='flex gap-2 justify-center'><a href="/login" className='text-lg rounded-lg bg-[#209978] hover:bg-[#4caf50] p-3 text-white px-4'>Login</a><a href="/signup" className='text-lg rounded-lg bg-[#209978] hover:bg-[#4caf50] p-3 text-white px-4'>Signin</a></div>)}
+      {user ?( <ProfileOverlay></ProfileOverlay>):(<div className='flex gap-2 justify-center'><a href="/login" className='text-lg rounded-lg bg-[#209978] hover:bg-[#4caf50] p-3 text-white px-4'>Login</a><a href="/signup" className='text-lg rounded-lg bg-[#209978] hover:bg-[#4caf50] p-3 text-white px-4'>SignUp</a></div>)}
      
     </div>
   );

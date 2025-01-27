@@ -30,10 +30,13 @@ import DrugInDisease from './components/DrugInDisease';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import ProtectedRoute from "./components/Auth/PrivateRoute";
+import Dashboard from "./components/DoctorPortal/Dashboard";
+import { Toaster } from 'react-hot-toast';
 function App() {
   const navigate = useNavigate();
   return (
     <div className="App">
+      <Toaster></Toaster>
       <ResponsiveAppBar />
       <div className="homepageChatBot" onClick={() => navigate('/chatbot')}>
         <img src="chatbot.png" />
@@ -63,6 +66,7 @@ function App() {
         <Route path="/druggeneration" element={<ProtectedRoute><Druggeneration /></ProtectedRoute>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
+        <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
       </Routes>
     </div>
   );

@@ -61,3 +61,19 @@ def signin():
         return jsonify(user), 200
     else:
         return jsonify({"error": "Invalid email or password"}), 401
+
+def get_users_by_specialization():
+    specialization = request.args.get('specialization', '') 
+    filters = {"accountType": "DOCTOR"}  
+
+   
+    if specialization:
+        filters["specialization"] = specialization
+
+    
+    users = list(users_collection.find(filters))
+    for user in users:
+        user['_id'] = str(user['_id'])  # Convert ObjectId to string
+        del user['password']  # Remove sensitive information like passwords
+
+    return jsonify(users), 200

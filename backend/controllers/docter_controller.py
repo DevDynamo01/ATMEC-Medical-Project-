@@ -66,6 +66,19 @@ def get_docter_by_id(id):
 def get_all_docters():
     docters = list(docter_db.find({}))
     for docter in docters:
-        docter['_id'] = str(docter['_id'])  # Convert ObjectId to string for the response
-        del docter['password']  # Optionally remove passwords
+        docter['_id'] = str(docter['_id'])
+        if 'password' in docter:
+            del docter['password']  # Optionally remove passwords
     return jsonify(docters), 200
+
+def get_doctors_by_specification():
+    specialization = request.args.get('specialization', '')  # Get specialization from query params
+    filters = {}
+    
+    if specialization:
+        filters["field"] = specialization
+    
+    doctors = list(docter_db.find(filters))
+    for doctor in doctors:
+        doctor['_id'] = str(doctor['_id'])
+    return jsonify(doctors), 200

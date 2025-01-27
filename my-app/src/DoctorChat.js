@@ -63,7 +63,6 @@ const DoctorChat = () => {
           </div>
         </div>
         <div className="rightLowerPart">
-          <VideoCall />
         </div>
       </div>
     </div>
