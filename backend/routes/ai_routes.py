@@ -24,10 +24,22 @@ ai_routes.route('/questions-for-treatment', methods=['POST'])(questions_for_trea
 
 ai_routes.route('/treatment-plan', methods=['POST'])(generate_treatement_plan)
 
+
+
+
+
+
+
+
 ## [ Generating datasets ]
 ai_routes.route('/generate-dataset-from-sample', methods=['POST'])(generate_dataset_from_sample)  #  {size , sample}
 
 ai_routes.route('/generate-dataset-from-description', methods=['POST'])(generate_dataset_from_description)  # {size, fields, descriptions}
+
+
+
+
+
 
 ## [ Queriying from image ]
 ai_routes.route('/chat-with-image', methods=['POST'])(chat_with_image)

@@ -28,6 +28,14 @@ import DoctorsProfilePage from './DoctorsProfilePage';
 import DoctorChat from './DoctorChat';
 import DrugInDisease from './components/DrugInDisease';
 import LoginForm from './components/Login/LoginForm';
+import Game from './components/Game/Game';
+import StudentQusetions from './components/Game/StudentQusetions'
+import ParentQuestions from './components/Game/parentQuestions';
+import PartnerQuestions from './components/Game/partnerQuestions';
+import CorporateQuestions from './components/Game/corporateQuestions';
+import EmojiMoodAnalyzer from './components/Game/emojiQuestions';
+
+
 function App() {
   const navigate = useNavigate();
   return (
@@ -59,6 +67,13 @@ function App() {
         <Route path="/druggenerationfromdisease" element={<DrugInDisease />}></Route>
         <Route path="/druggeneration" element={<Druggeneration />}></Route>
         <Route path="/login" element={<LoginForm />}></Route>
+        <Route path="/game" element={<Game/>}></Route>
+        <Route path="/student-mood" element={<StudentQusetions/>}></Route>
+        <Route path="/emoji-mood" element={<EmojiMoodAnalyzer/>}></Route>
+        <Route path="/parent-mood" element={<ParentQuestions/>}></Route>
+        <Route path="/partner-mood" element={<PartnerQuestions/>}></Route>
+        <Route path="/corporate-mood" element={<CorporateQuestions/>}></Route>
+        <Route path="/basic-mood" element={<StudentQusetions/>}></Route>
       </Routes>
     </div>
   );
