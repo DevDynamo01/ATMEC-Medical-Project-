@@ -3,6 +3,7 @@ from flask_cors import CORS
 from routes.user_routes import user_routes
 from routes.ai_routes import ai_routes
 from routes.docter_routes import docter_routes
+from routes.appointment_routes import appointment_routes
 from flask_socketio import SocketIO, emit
 import os
 import gridfs
@@ -22,6 +23,7 @@ CORS(app)
 app.register_blueprint(user_routes)
 app.register_blueprint(ai_routes)
 app.register_blueprint(docter_routes)
+app.register_blueprint(appointment_routes)
 
 
 MODEL_DIR = 'aimodels/'
