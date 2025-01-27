@@ -1,45 +1,59 @@
-import React, { useEffect, useState,useContext} from 'react';
+import React, { useEffect, useState } from 'react';
 import './DoctorProfilePage.css';
-import DoctorProfile from './FeatureButtonData/DoctorProfile.json';
-import UserProfile from './FeatureButtonData/UserProfile.json';
 import IndividualDoctorProfile from './IndividualDoctorProfile';
 import { useCookies } from 'react-cookie';
-import DataContext from './context/dataContext';
-import axios from 'axios';
-import Loader from './components/Loader';
+
 const DoctorsProfilePage = () => {
-    const url="http://127.0.0.1:5000";
-    const {user}=useContext(DataContext);
-    const [doctors,setDoctors]=useState([]);
-    const [specialization,setSpecialization]=useState("");
-    const [loading,setLoading]=useState(false);
-    const getAvailableDoctors = async (specialization) => {
+  const [cookies] = useCookies(['medgenai']);
+  const role = cookies?.medgenai?.accountType || '';
+  const [displayObject, setDisplayObject] = useState([]);
+
+  useEffect(() => {
+    const fetchDoctorProfiles = async () => {
       try {
-        const response = await axios.get(`${url}/docters/get-by-specialization`, {
-          params: {
-            specialization: specialization
-          }
-        });
-        console.log(response.data);
-        setDoctors(response?.data);
-      } catch (err) {
-        console.error(err);
+        const response = await fetch('http://127.0.0.1:5000/docters');
+        if (!response.ok) {
+          throw new Error('Failed to fetch doctor profiles');
+        }
+        const data = await response.json();
+        console.log('Fetched profiles:', data);
+        setDisplayObject(data);
+      } catch (error) {
+        console.error('Error fetching doctor profiles:', error);
       }
     };
-    useEffect(()=>{
-      getAvailableDoctors(specialization)
-    },[specialization]);
+
+    const fetchHealthSeakerProfile = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch doctor profiles');
+        }
+        const data = await response.json();
+        console.log('Fetched profiles:', data);
+        setDisplayObject(data);
+      } catch (error) {
+        console.error('Error fetching doctor profiles:', error);
+      }
+    };
+
+    if (role === 'HEALTHSEAKER') {
+      fetchDoctorProfiles();
+    } else {
+      fetchHealthSeakerProfile();
+    }
+  }, [role, cookies]);
+
+  console.log('Display object:', displayObject);
+
   return (
     <div className="doctor-profile-page">
-      <div className="container relative">
+      <div className="container">
         <h4>Connect With Our Doctors</h4>
-        {loading && (<Loader></Loader>)}
         <div className="containerofIndividualDoctorProfile">
-            {doctors && doctors.length>0 &&(
-              doctors.map((profile, index) => (
-                <IndividualDoctorProfile key={index} profile={profile} user={user} setLoading={setLoading}/>
-              ))
-            )}
+          {displayObject.map((profile, index) => (
+            <IndividualDoctorProfile key={index} profile={profile} />
+          ))}
         </div>
       </div>
     </div>

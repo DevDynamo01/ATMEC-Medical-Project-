@@ -78,23 +78,21 @@ def index():
 @socketio.on('join_room')
 def handle_join_room(data):
     room = data['room']
-    username = data.get('username', 'Guest')
+    username = data.get('name', 'Guest')
     join_room(room)
-    emit('message', {'username': 'System', 'message': f"{username} has joined the room."}, room=room)
+    emit('joinRoom', {'name': 'System', 'message': f"{username} has joined the room."}, room=room)
 
 @socketio.on('leave_room')
 def handle_leave_room(data):
     room = data['room']
-    username = data.get('username', 'Guest')
+    username = data.get('name', 'Guest')
     leave_room(room)
-    emit('message', {'username': 'System', 'message': f"{username} has left the room."}, room=room)
+    emit('leftRoom', {'name': 'System', 'message': f"{username} has left the room."}, room=room)
 
 @socketio.on('send_message')
 def handle_send_message(data):
-    room = data['room']
-    username = data['username']
-    message = data['message']
-    emit('message', {'username': username, 'message': message}, room=room)
+    print(data)
+    emit('message', data, room=data['room'])
 
 # Run the app
 if __name__ == '__main__':

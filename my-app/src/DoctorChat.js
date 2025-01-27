@@ -18,6 +18,8 @@ const DoctorChat = () => {
   const [displayProfiles, setDisplayProfiles] = useState([]);
   const [showVideoCall, setShowVideoCall] = useState(false);
 
+  const currentUser = cookies?.medgenai?.firstName || cookies?.medgenai?.name;
+
   // Fetch profiles based on user role
   useEffect(() => {
     const fetchProfiles = async (url) => {
@@ -27,7 +29,6 @@ const DoctorChat = () => {
           throw new Error('Failed to fetch profiles');
         }
         const data = await response.json();
-        console.log('Chat Section: ', data);
         setDisplayProfiles(data);
       } catch (error) {
         console.error('Error fetching profiles:', error);
@@ -41,25 +42,44 @@ const DoctorChat = () => {
     }
   }, [role]);
 
-  // Set up socket listeners
+  // Join socket room
   useEffect(() => {
-    socket.on('receiveMessage', (message) => {
+    if (chatDoctor?._id) {
+      socket.emit('join_room', {
+        room: chatDoctor._id,
+        name: chatDoctor?.name || chatDoctor?.firstName,
+      });
+    }
+
+    // Listen for incoming messages
+    socket.on('message', (message) => {
+      console.log('message : ', message);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
     return () => {
       socket.off('receiveMessage');
+      socket.emit('leave_room', {
+        room: chatDoctor._id,
+        name: chatDoctor?.name || chatDoctor?.firstName,
+      });
     };
-  }, []);
+  }, [chatDoctor]);
 
   const sendMessage = () => {
     if (newMessage.trim()) {
       const messageData = {
-        sender: cookies?.medgenai?.firstName,
-        content: newMessage,
+        room: chatDoctor?._id,
+        sender: currentUser,
+        senderemail: cookies?.medgenai?.email,
+        message: newMessage,
         time: new Date().toLocaleTimeString(),
       };
+
+      // Emit message to the room
       socket.emit('sendMessage', messageData);
+
+      // Update local state for the sender
       setMessages((prevMessages) => [...prevMessages, messageData]);
       setNewMessage('');
     }
@@ -133,14 +153,18 @@ const DoctorChat = () => {
             <div className="chatSection">
               <div className="chatMessages">
                 {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`message ${
-                      message.sender === cookies?.medgenai?.firstName ? 'sent' : 'received'
-                    }`}
-                  >
-                    <strong>{message.sender}:</strong> {message.content}
-                    <div className="timestamp">{message.time}</div>
+                  <div>
+                    {chatDoctor?.email === message.senderemail && (
+                      <div
+                        key={message.senderemail}
+                        className={`message ${
+                          message.sender === currentUser ? 'sent' : 'received'
+                        }`}
+                      >
+                        <strong>{message.sender}:</strong> {message.message}
+                        {/* <div className="timestamp">{message.time}</div> */}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
