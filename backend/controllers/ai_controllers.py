@@ -1,14 +1,16 @@
 from flask import jsonify, request
 import requests
 from ai.ai_serveces import user_input
-from ai.gemini import chat_with_gemini, gen_ai_json, gen_ai_image
+from ai.gemini import chat_with_gemini, gen_ai_json, gen_ai_image, gen_ai_image_json
 from ai.prompts import question_generation_prompt, predict_disease_prompt, treatment_questions_prompt, treatment_plan_generation_prompt, dataset_generation_prompt
-from ai.prompts import disease_from_image_prompt, extract_from_image_prompt, drug_discovery_prompt, drug_from_disease_prompt
+from ai.prompts import disease_from_image_prompt, extract_from_image_prompt, drug_discovery_prompt, drug_from_disease_prompt, mental_state_prompt
 import json
 from ai.gemini import upload_url_to_gemini, upload_to_gemini
+# from ai.local_models import predict_xray, predict_skin
+
 
 def predict():
-    return jsonify({'message': 'Prediction successful'}), 200   
+    return jsonify({'message': 'Prediction successful'}), 200  
 
 def send_message():
     question = request.json.get('message')
@@ -19,7 +21,7 @@ def send_message():
 def chat_with_ai():
     message = request.json.get('message')
     image_url = request.json.get('image')
-    history = []
+    history = request.json.get('history', [])
 
     # for history_item in history:
     #     if history_item.image:
@@ -87,6 +89,13 @@ def generate_dataset_from_description():
     result = json.loads(result)
     return jsonify(result), 200
 
+def mental_prediction():
+    data = request.json
+    data_string = json.dumps(data)
+    result = gen_ai_json(data_string, prompts=mental_state_prompt)
+    result = json.loads(result)
+    return jsonify(result), 200
+
 from flask import request, jsonify
 
 def chat_with_image():
@@ -101,6 +110,38 @@ def chat_with_image():
         return jsonify({"data": result}), 200
     else:
         return jsonify({"error": "Image not provided"}), 400
+
+def class_of_image(image_data, mime_type):
+    parts = [
+        "you will be given an image of some disease and you have to predict the class, class can be  \"xray\" (for chest x-ray images) , \"skin\" ( for skin related disease images ) and \"other\" if it is neither.\nfor example for some image your output maybe : {\"class\": \"xray\"} or {\"class\": \"skin\"} or {\"class\": \"other\"} .",
+    ]
+    result = gen_ai_image_json('', image_data, mime_type, prompts=parts)
+    result = json.loads(result)
+    print(type(result), " , result: ", result)
+    return result['class']
+
+# def predict_disease_from_image():
+#     image = request.files.get('image')
+
+#     if image:
+#         image_data = image.read()
+#         mime_type = image.mimetype
+#         print(f"Received image: {image.filename} with mime type: {mime_type}")
+#         image_class = class_of_image(image_data, mime_type)
+#         disease_report_prompt = ["You are a medical expert. you will be given an image of x-ray or some skin disease. you will also be given predicted disease result from our local model. you have to create a detailed structured report with disease at the top followed by detailed analysis."]
+
+#         if image_class == "other":
+#             result = gen_ai_image('', image_data, mime_type, prompts=disease_from_image_prompt)
+#         elif image_class == "skin":
+#             predicted_class, confidence_score = predict_skin(image_data)
+#             result = gen_ai_image(f'local model reslut : "disease" : {predicted_class}, "confidence_score": {confidence_score}.', image_data, mime_type, prompts=disease_report_prompt)
+#         elif image_class == "xray":
+#             predicted_class, confidence_score = predict_xray(image_data)
+#             result = gen_ai_image(f'local model reslut : "disease" : {predicted_class}, "confidence_score": {confidence_score}.', image_data, mime_type, prompts=disease_report_prompt)
+        
+#         return jsonify({"data": result}), 200
+#     else:
+#         return jsonify({"error": "Image not provided"}), 400
     
 
 def predict_disease_from_image():
@@ -138,3 +179,4 @@ def drug_from_disease():
     result = gen_ai_json(disease, prompts=drug_from_disease_prompt)
     result = json.loads(result)
     return jsonify(result), 200
+

@@ -35,6 +35,9 @@ import PartnerQuestions from './components/Game/partnerQuestions';
 import CorporateQuestions from './components/Game/corporateQuestions';
 import EmojiMoodAnalyzer from './components/Game/emojiQuestions';
 
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
+import ProtectedRoute from "./components/Auth/PrivateRoute";
 
 function App() {
   const navigate = useNavigate();
@@ -48,13 +51,14 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/chatbot"
-          element={
-            <ChatContextProvider>
-              <div className="flex transition duration-500 ease-in-out mt-[var(--marginNavBar)]">
-                <SideBar />
-                <ChatView />
-              </div>
-            </ChatContextProvider>
+          element={<ProtectedRoute>
+              <ChatContextProvider>
+                <div className="flex transition duration-500 ease-in-out mt-[var(--marginNavBar)]">
+                  <SideBar />
+                  <ChatView />
+                </div>
+              </ChatContextProvider>
+            </ProtectedRoute>
           }
         ></Route>
         <Route path="/diagonsis" element={<FollowUpQuestions></FollowUpQuestions>}></Route>
@@ -74,6 +78,17 @@ function App() {
         <Route path="/partner-mood" element={<PartnerQuestions/>}></Route>
         <Route path="/corporate-mood" element={<CorporateQuestions/>}></Route>
         <Route path="/basic-mood" element={<StudentQusetions/>}></Route>
+        <Route path="/diagonsis" element={<ProtectedRoute><FollowUpQuestions></FollowUpQuestions></ProtectedRoute>}></Route>
+        <Route path="/uploadImage" element={<ProtectedRoute><ImageUpload /></ProtectedRoute>}></Route>
+        <Route path="/handle-uploader" element={<ProtectedRoute><ReportUploader></ReportUploader></ProtectedRoute>}></Route>
+        <Route path="/generateDataFromSample" element={<ProtectedRoute><UploadFile /></ProtectedRoute>}></Route>
+        <Route path="/generateData" element={<ProtectedRoute><DynamicForm /></ProtectedRoute>}></Route>
+        <Route path="/doctors-profile" element={<ProtectedRoute><DoctorsProfilePage /></ProtectedRoute>}></Route>
+        <Route path="/doctor-chat" element={<ProtectedRoute><DoctorChat /></ProtectedRoute>}></Route>
+        <Route path="/druggenerationfromdisease" element={<ProtectedRoute><DrugInDisease /></ProtectedRoute>}></Route>
+        <Route path="/druggeneration" element={<ProtectedRoute><Druggeneration /></ProtectedRoute>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
       </Routes>
     </div>
   );
