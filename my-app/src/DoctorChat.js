@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './DoctorChat.css';
 import { useLocation } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import DoctorProfile from './FeatureButtonData/DoctorProfile.json';
-import UserProfile from './FeatureButtonData/UserProfile.json';
-import VideoCall from './VideoCall';
 import { useCookies } from 'react-cookie';
+import VideoCall from './VideoCall';
 
 const socket = io('http://localhost:5000');
 
@@ -15,59 +13,35 @@ const DoctorChat = () => {
   const [chatDoctor, setChatDoctor] = useState(profile);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-
-  useEffect(() => {
-    setChatDoctor(profile);
-  }, [profile]);
-
-  const handleClickProfile = (prof) => {
-    setChatDoctor(prof);
-  };
-
   const [cookies] = useCookies(['medgenai']);
   const role = cookies?.medgenai?.accountType || '';
-  const [displayObject, setDisplayObject] = useState([]);
+  const [displayProfiles, setDisplayProfiles] = useState([]);
   const [showVideoCall, setShowVideoCall] = useState(false);
 
+  // Fetch profiles based on user role
   useEffect(() => {
-    const fetchDoctorProfiles = async () => {
+    const fetchProfiles = async (url) => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/docters');
+        const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Failed to fetch doctor profiles');
+          throw new Error('Failed to fetch profiles');
         }
         const data = await response.json();
-        console.log('Fetched profiles:', data);
-        setDisplayObject(data);
+        console.log('Chat Section: ', data);
+        setDisplayProfiles(data);
       } catch (error) {
-        console.error('Error fetching doctor profiles:', error);
+        console.error('Error fetching profiles:', error);
       }
     };
 
-    const fetchHealthSeakerProfile = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:5000/users');
-        if (!response.ok) {
-          throw new Error('Failed to fetch doctor profiles');
-        }
-        const data = await response.json();
-        console.log('Fetched profiles:', data);
-        setDisplayObject(data);
-      } catch (error) {
-        console.error('Error fetching doctor profiles:', error);
-      }
-    };
     if (role === 'HEALTHSEAKER') {
-      fetchDoctorProfiles();
-    } else if (role === 'Doctor') {
-      fetchHealthSeakerProfile();
+      fetchProfiles('http://127.0.0.1:5000/docters');
+    } else {
+      fetchProfiles('http://127.0.0.1:5000/users');
     }
-  }, [role, cookies]);
+  }, [role]);
 
-  const toggleVideoCall = () => {
-    setShowVideoCall((prevState) => !prevState);
-  };
-
+  // Set up socket listeners
   useEffect(() => {
     socket.on('receiveMessage', (message) => {
       setMessages((prevMessages) => [...prevMessages, message]);
@@ -91,33 +65,67 @@ const DoctorChat = () => {
     }
   };
 
+  const toggleVideoCall = () => setShowVideoCall((prev) => !prev);
+
   return (
     <div className="chatMainComponent component-margin">
+      {/* Left Section: Profiles List */}
       <div className="leftPart">
-        {displayObject.map((prof, ind) => (
-          <div key={ind} className="singleProfile" onClick={() => handleClickProfile(prof)}>
+        {displayProfiles.map((prof, ind) => (
+          <div
+            key={ind}
+            className={`singleProfile ${chatDoctor?.email === prof?.email ? 'active' : ''}`}
+            onClick={() => setChatDoctor(prof)}
+          >
             <div className="chatDoctorImage">
-              <img src={prof?.image_url} alt="Doctor" />
+              <img
+                src={
+                  prof?.image_url ||
+                  'https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg'
+                }
+                alt={prof?.name || 'Profile'}
+              />
             </div>
-            <div className="chatdoctordescription">
-              <div className="doctorname">{prof?.name}</div>
-              <div className="doctorfield">{prof?.field}</div>
+            <div className="chatDoctorDescription">
+              <div className="doctorName">
+                {prof?.name ||
+                  (prof?.firstName && prof?.lastName
+                    ? `${prof.firstName} ${prof.lastName}`
+                    : 'No Name Available')}
+              </div>
+              <div className="doctorField">{prof?.field}</div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Right Section: Chat and Video Call */}
       <div className="rightPart">
+        {/* Chat Header */}
         <div className="rightUpperPart">
           <div className="rightUpperPartLeft">
-            <div className="rightUpperPartLeftimageDiv">
-              <img src={chatDoctor?.image_url} alt="Selected Doctor" />
+            <div className="rightUpperPartLeftImageDiv">
+              <img
+                src={
+                  chatDoctor?.image_url ||
+                  'https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg'
+                }
+                alt={chatDoctor?.name || 'Selected Profile'}
+              />
             </div>
-            <div>{chatDoctor?.name}</div>
+            <div>
+              {chatDoctor?.name ||
+                (chatDoctor?.firstName && chatDoctor?.lastName
+                  ? `${chatDoctor.firstName} ${chatDoctor.lastName}`
+                  : 'No Name Available')}
+            </div>
           </div>
           <div className="videoCallIcon" onClick={toggleVideoCall}>
             <img src="videoCall.png" alt="Video Call Icon" />
           </div>
         </div>
+
+        {/* Chat Body */}
         <div className="rightLowerPart">
           {showVideoCall ? (
             <VideoCall />
@@ -125,7 +133,12 @@ const DoctorChat = () => {
             <div className="chatSection">
               <div className="chatMessages">
                 {messages.map((message, index) => (
-                  <div key={index} className={`message ${message.sender}`}>
+                  <div
+                    key={index}
+                    className={`message ${
+                      message.sender === cookies?.medgenai?.firstName ? 'sent' : 'received'
+                    }`}
+                  >
                     <strong>{message.sender}:</strong> {message.content}
                     <div className="timestamp">{message.time}</div>
                   </div>
