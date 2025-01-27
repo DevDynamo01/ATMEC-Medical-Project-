@@ -1,23 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import './DoctorProfilePage.css';
-import DoctorProfile from './FeatureButtonData/DoctorProfile.json';
-import UserProfile from './FeatureButtonData/UserProfile.json';
 import IndividualDoctorProfile from './IndividualDoctorProfile';
 import { useCookies } from 'react-cookie';
 
 const DoctorsProfilePage = () => {
-  const [cookies] = useCookies(['userinfo']);
-  const role = cookies?.userinfo?.role?.role || '';
+  const [cookies] = useCookies(['medgenai']);
+  const role = cookies?.medgenai?.accountType || '';
   const [displayObject, setDisplayObject] = useState([]);
 
   useEffect(() => {
-    console.log('Cookies:', cookies);
-    console.log('Role:', role);
+    const fetchDoctorProfiles = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/docters');
+        if (!response.ok) {
+          throw new Error('Failed to fetch doctor profiles');
+        }
+        const data = await response.json();
+        console.log('Fetched profiles:', data);
+        setDisplayObject(data);
+      } catch (error) {
+        console.error('Error fetching doctor profiles:', error);
+      }
+    };
 
-    if (role === 'patient') {
-      setDisplayObject(DoctorProfile);
+    const fetchHealthSeakerProfile = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch doctor profiles');
+        }
+        const data = await response.json();
+        console.log('Fetched profiles:', data);
+        setDisplayObject(data);
+      } catch (error) {
+        console.error('Error fetching doctor profiles:', error);
+      }
+    };
+
+    if (role === 'HEALTHSEAKER') {
+      fetchDoctorProfiles();
     } else {
-      setDisplayObject(UserProfile);
+      fetchHealthSeakerProfile();
     }
   }, [role, cookies]);
 

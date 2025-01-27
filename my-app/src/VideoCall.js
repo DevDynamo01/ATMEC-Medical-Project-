@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 const LiveStream = () => {
   const navigate = useNavigate();
-  const [cookies] = useCookies(['userinfo']);
+  const [cookies] = useCookies(['medgenai']);
   const id = 'sahil@123';
   console.log('Cook', cookies);
-  console.log(cookies?.userinfo?.email?.user);
-  const user = { firstName: cookies?.userinfo?.email?.user };
+  console.log(cookies?.medgenai?.firstName);
+  const user = { firstName: cookies?.medgenai?.firstName };
 
   const myMeeting = async (element) => {
-    const appId = 987170939;
-    const serverSecret = 'a59abaa2072f4f34c6f086a13485d3d4';
+    const appId = 1542959202;
+    const serverSecret = '121e9b216fa6172ff73d2ec44b439a00';
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appId,
       serverSecret,
