@@ -42,11 +42,6 @@ def get_docters_all_appointments():
     appointments = list(appointment_db.find({"docter_id": docter_id}))
     for appointment in appointments:
         appointment['_id'] = str(appointment['_id'])
-        user = db['users'].find_one({"_id": ObjectId(appointment['user_id'])})
-        if user:
-            user['_id'] = str(user['_id'])
-            del user['password']
-            appointment['user'] = user
     return jsonify(appointments), 200
     
 def get_users_all_appointments():

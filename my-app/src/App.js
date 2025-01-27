@@ -38,11 +38,14 @@ import EmojiMoodAnalyzer from './components/Game/emojiQuestions';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import ProtectedRoute from './components/Auth/PrivateRoute';
+import Dashboard from './components/DoctorPortal/Dashboard';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const navigate = useNavigate();
   return (
     <div className="App">
+      <Toaster></Toaster>
       <ResponsiveAppBar />
       <div className="homepageChatBot" onClick={() => navigate('/chatbot')}>
         <img src="chatbot.png" />
@@ -71,7 +74,6 @@ function App() {
         <Route path="/doctor-chat" element={<DoctorChat />}></Route>
         <Route path="/druggenerationfromdisease" element={<DrugInDisease />}></Route>
         <Route path="/druggeneration" element={<Druggeneration />}></Route>
-        {/* <Route path="/login" element={<LoginForm />}></Route> */}
         <Route path="/game" element={<Game />}></Route>
         <Route path="/student-mood" element={<StudentQusetions />}></Route>
         <Route path="/emoji-mood" element={<EmojiMoodAnalyzer />}></Route>
@@ -153,6 +155,7 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
       </Routes>
     </div>
   );

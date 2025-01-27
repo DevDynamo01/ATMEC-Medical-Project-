@@ -82,3 +82,14 @@ def get_all_docters():
             del docter['password']  # Optionally remove passwords
     return jsonify(docters), 200
 
+def get_doctors_by_specification():
+    specialization = request.args.get('specialization', '')  # Get specialization from query params
+    filters = {}
+    
+    if specialization:
+        filters["field"] = specialization
+    
+    doctors = list(docter_db.find(filters))
+    for doctor in doctors:
+        doctor['_id'] = str(doctor['_id'])
+    return jsonify(doctors), 200
